@@ -1,4 +1,4 @@
-# MCC Sequence (Construct Ver.)
+# MCC Sequence (Construct Version)
 
 ## 問題文
 

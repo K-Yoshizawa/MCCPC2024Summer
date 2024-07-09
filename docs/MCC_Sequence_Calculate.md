@@ -1,4 +1,4 @@
-# MCC Sequence (Calculate Ver.)
+# MCC Sequence (Calculate Version)
 
 ## 問題文
 
