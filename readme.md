@@ -49,7 +49,7 @@
 |#|問題名|問題文初稿|サンプル作成|MOFE移植|ACコード|ケース生成|Validate|
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |A|MCC|*|*|*|*|*|*|
-|B|Worship|*|*|*||||
+|B|Worship|*|*|*|*|*|*|
 |C|Multiplication Table|*|*|*|*|||
 |D|Addition and Division|*|*|*|*|||
 |E|MCC Sequence (Calculate Version)|*|*|*|*|||
