@@ -16,19 +16,19 @@
 
 |#|配点|部分点|難易度|問題名|
 |:-:|:--:|:--:|:--:|:--:|
-|A|1000|-|Milk|MCC|
-|B|1000|-|Milk|Worship|
-|C|100|50|Assam|Multiplication Table|
-|D|100|50|Assam|Addition and Division|
-|E|150|50|Benihuki|MCC Sequence (Calculate Version)|
-|F|150|?|Benihuki|Mix Number|
+|A|100|-|Milk|MCC|
+|B|100|-|Milk|Worship|
+|C|150|50|Assam|Multiplication Table|
+|D|150|50|Assam|Addition and Division|
+|E|200|50|Benihuki|MCC Sequence (Calculate Version)|
+|F|200|100|Benihuki|Second Shortest Path in Pseudotree|
 |G|250|?|Ceylon|Passing the Trash|
 |H|250|?|Ceylon|Agricultual Expression|
-|I|350|?|Darjeeling|TUAT String 4|
-|J|350|?|Darjeeling|MCC Sequence (Construct Version)|
-|K|350|?|Darjeeling|Emotional View|
-|L|450|?|Earlgray|Even Path|
-|M|500|Dynamic|Earlgray|Spanning Tree|
+|I|300|?|Darjeeling|TUAT String 4|
+|J|300|?|Darjeeling|MCC Sequence (Construct Version)|
+|K|300|?|Darjeeling|Emotional View|
+|L|350|?|Earlgray|Even Path|
+|M|350|Dynamic|Earlgray|Spanning Tree|
 
 ## 難易度設計意図
 
@@ -48,11 +48,10 @@
 |C|Multiplication Table|*|*|*|*|||
 |D|Addition and Division|*|*|*|*|||
 |E|MCC Sequence (Calculate Version)|*|*|*|*|||
-|F|Mix Number|||||||
+|F|Second Shortest Path in Pseudotree|*|*|*||||
 |G||||||||
 |H||||||||
 |I||||||||
 |J||||||||
 |K||||||||
 |L||||||||
-|M||||||||
