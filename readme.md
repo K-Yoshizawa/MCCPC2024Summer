@@ -35,9 +35,9 @@
 |D|150|50|Assam|Addition and Division|
 |E|200|50|Benihuki|MCC Sequence (Calculate Version)|
 |F|200|100|Benihuki|Second Shortest Path in Pseudotree|
-|G|250|?|Ceylon|Passing the Trash|
+|G|250|50+100|Ceylon|Passing the Trash|
 |H|250|?|Ceylon|Agricultual Expression|
-|I|300|?|Darjeeling|TUAT String 4|
+|I|300|50|Darjeeling|TUAT String 4|
 |J|300|?|Darjeeling|MCC Sequence (Construct Version)|
 |K|300|?|Darjeeling|Emotional View|
 |L|350|?|Earlgray|Even Path|
@@ -66,7 +66,7 @@
 |F|Second Shortest Path in Pseudotree|*|*|*||||
 |G||||||||
 |H||||||||
-|I||||||||
+|I|TUAT String 4|*|*|*|*|*|*|
 |J||||||||
 |K||||||||
 |L||||||||
