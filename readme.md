@@ -36,7 +36,7 @@
 |E|200|50|Benihuki|MCC Sequence (Calculate Version)|
 |F|200|100|Benihuki|Second Shortest Path in Pseudotree|
 |G|250|50+100|Ceylon|Passing the Trash|
-|H|250|?|Ceylon|Agricultual Expression|
+|H|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|
 |I|300|50|Darjeeling|TUAT String 4|
 |J|300|?|Darjeeling|MCC Sequence (Construct Version)|
 |K|300|?|Darjeeling|Emotional View|
