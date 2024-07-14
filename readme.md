@@ -56,17 +56,17 @@
 
 ※最終更新 : 2024/7/12
 
-|#|問題名|問題文初稿|サンプル作成|MOFE移植|ACコード|ケース生成|Validate|
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|A|MCC|*|*|*|*|*|*|
-|B|Worship|*|*|*|*|*|*|
-|C|Multiplication Table|*|*|*|*|||
-|D|Addition and Division|*|*|*|*|||
-|E|MCC Sequence (Calculate Version)|*|*|*|*|||
-|F|Second Shortest Path in Pseudotree|*|*|*||||
-|G||||||||
+|#|問題名|問題ID|問題文初稿|サンプル作成|MOFE移植|ACコード|ケース生成|Validate|
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|A|MCC|190|*|*|*|*|*|*|
+|B|Worship|191|*|*|*|*|*|*|
+|C|Multiplication Table|192|*|*|*|*|||
+|D|Addition and Division|193|*|*|*|*|||
+|E|MCC Sequence (Calculate Version)|194|*|*|*|*|||
+|F|Second Shortest Path in Pseudotree|195|*|*|*||||
+|G|Passing Trash|197|*|*|*|*|*|*|
 |H||||||||
-|I|TUAT String 4|*|*|*|*|*|*|
+|I|TUAT String 4|196|*|*|*|*|*|*|
 |J||||||||
 |K||||||||
 |L||||||||
