@@ -1,0 +1,17 @@
+# -*- coding: utf-8; mode: python -*-
+
+pid='I'
+
+problem(
+  time_limit=5.0,
+  id=pid,
+  title=pid + ": TUAT String 4",
+  #wiki_name="Your pukiwiki page name", # for wikify plugin
+  #assignees=['Assignees', 'for', 'this', 'problem'], # for wikify plugin
+  #need_custom_judge=True, # for wikify plugin
+  reference_solution='AC-writer',
+  )
+
+atcoder_config(
+  task_id=None # None means a spare
+)
