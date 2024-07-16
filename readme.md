@@ -61,7 +61,7 @@
 |A|MCC|190|*|*|*|*|*|*|
 |B|Worship|191|*|*|*|*|*|*|
 |C|Multiplication Table|192|*|*|*|*|*|*|
-|D|Addition and Division|193|*|*|*|*|||
+|D|Addition and Division|193|*|*|*|*|*|*|
 |E|MCC Sequence (Calculate Version)|194|*|*|*|*|*|*|
 |F|Second Shortest Path in Pseudotree|195|*|*|*||||
 |G|Passing Trash|197|*|*|*|*|*|*|
