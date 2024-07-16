@@ -53,6 +53,21 @@ int main(int argc, char* argv[]){
     for(int t = 1; t <= 5; ++t){
         make_hard_testcase(MAX_N, MAX_M, format("21_max_%02d.in", t));
     }
+    {
+        ofstream of("22_hand_01.in");
+        of << "1 0" << endl;
+        of.close();
+    }
+    {
+        ofstream of("22_hand_02.in");
+        of << "9 0" << endl;
+        of.close();
+    }
+    {
+        ofstream of("22_hand_03.in");
+        of << "3000 1" << rnd.next("[0]{99999}") << endl;
+        of.close();
+    }
 
     return 0;
 }
