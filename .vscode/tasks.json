@@ -1,0 +1,17 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "g++-12 ${file} -std=c++2a -O2"
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "./a.out < ${file}"
+        },
+    ]
+}
