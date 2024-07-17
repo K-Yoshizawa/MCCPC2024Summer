@@ -36,12 +36,12 @@
 |E|200|50|Benihuki|MCC Sequence (Calculate Version)|
 |F|200|100|Benihuki|Second Shortest Path in Pseudotree|
 |G|250|?|Ceylon|Let's Meet by the Promised Time|
-|I|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|
-|H|300|50+100|Darjeeling|Passing the Trash|
+|H|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|
+|I|300|50+100|Darjeeling|Passing the Trash|
 |J|300|50|Darjeeling|TUAT String 4|
 |K|300|?|Darjeeling|MCC Sequence (Construct Version)|
 |L|350|?|Earlgray|Emotional View|
-|M|350|?|Earlgray|Even Path|
+|M|350|50+50|Earlgray|Even Even Path|
 
 ## 難易度設計意図
 
@@ -64,9 +64,10 @@
 |D|Addition and Division|193|*|*|*|*|*|*|
 |E|MCC Sequence (Calculate Version)|194|*|*|*|*|*|*|
 |F|Second Shortest Path in Pseudotree|195|*|*|*||||
-|G|Passing Trash|197|*|*|*|*|*|*|
+|G|Let's Meet by the Promised Time|199|||||||
 |H|Agricultural Expression|198|*|*|*|*|*|*|
-|I|TUAT String 4|196|*|*|*|*|*|*|
-|J||||||||
-|K||||||||
-|L||||||||
+|I|Passing Trash|197|*|*|*|*|*|*|
+|J|TUAT String 4|196|*|*|*|*|*|*|
+|K|||||||||
+|L|||||||||
+|M|Even Even Path|201|*|*|*|*|*|*|
