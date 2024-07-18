@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "g++-12 ${file} -std=c++2a -O2 -fsanitize=address,undefined",
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "./a.out < ${file}",
+        },
+    ]
+}
