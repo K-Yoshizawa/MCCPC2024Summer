@@ -1,0 +1,11 @@
+using ll = long long;
+
+const ll MIN_M = 0;
+const ll MAX_M = 100000000000000LL;
+
+const ll HARD_SMALL_MIN_M = 6LL;
+const ll HARD_SMALL_MAX_M = 50LL;
+const ll HARD_MEDIUM_MIN_M = 100000000LL;
+const ll HARD_MEDIUM_MAX_M = 500000000LL;
+const ll HARD_LARGE_MIN_M = 10000000000000LL;
+const ll HARD_LARGE_MAX_M = 50000000000000LL;
