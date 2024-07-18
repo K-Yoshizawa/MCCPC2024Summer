@@ -93,10 +93,10 @@ int main(int argc, char* argv[]){
     
     // 2* Normal
     for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), rnd.next(NORMAL_SMALL_MIN_M, NORMAL_SMALL_MAX_M), format("20_small_%02d.in", t));
+        make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), rnd.next(NORMAL_SMALL_MIN_M, NORMAL_SMALL_MAX_M), format("20_small_%02d.in", t));
     }
     for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), rnd.next(NORMAL_LARGE_MIN_M, NORMAL_LARGE_MAX_M), format("21_large_%02d.in", t));
+        make_normal_testcase(rnd.next(NORMAL_LARGE_MIN_N, NORMAL_LARGE_MAX_N), rnd.next(NORMAL_LARGE_MIN_M, NORMAL_LARGE_MAX_M), format("21_large_%02d.in", t));
     }
     for(int t = 1; t <= 5; ++t){
         make_normal_testcase(NORMAL_MAX_N, NORMAL_MAX_M, format("22_max_%02d.in", t));

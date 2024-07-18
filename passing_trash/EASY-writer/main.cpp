@@ -21,7 +21,6 @@ int main(){
     }
     sort(ans.begin(), ans.end());
     ans.erase(unique(ans.begin(), ans.end()), ans.end());
-    cout << ans.size() << endl;
     for(int i = 0; i < ans.size(); ++i){
         cout << ans[i] << " \n"[i == ans.size() - 1];
     }
