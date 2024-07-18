@@ -40,7 +40,7 @@
 |I|300|50+100|Darjeeling|Passing the Trash|
 |J|300|50|Darjeeling|TUAT String 4|
 |K|300|?|Darjeeling|MCC Sequence (Construct Version)|
-|L|350|?|Earlgray|Emotional View|
+|L|350|75+125|Earlgray|Emotional View|
 |M|350|50+50|Earlgray|Even Even Path|
 
 ## 難易度設計意図
@@ -69,5 +69,5 @@
 |I|Passing Trash|197|*|*|*|*|*|*|
 |J|TUAT String 4|196|*|*|*|*|*|*|
 |K|||||||||
-|L|||||||||
+|L|Emotional View|202|*|*|*|*|*|*|
 |M|Even Even Path|201|*|*|*|*|*|*|
