@@ -68,6 +68,6 @@
 |H|Agricultural Expression|198|*|*|*|*|*|*|
 |I|Passing Trash|197|*|*|*|*|*|*|
 |J|TUAT String 4|196|*|*|*|*|*|*|
-|K|MCC Sequence (Construct Version)|203|*||*||||
+|K|MCC Sequence (Construct Version)|203|*|*|*|*|*|*|
 |L|Emotional View|202|*|*|*|*|*|*|
 |M|Even Even Path|201|*|*|*|*|*|*|
