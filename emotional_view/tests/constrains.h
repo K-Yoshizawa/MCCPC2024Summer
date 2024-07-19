@@ -12,10 +12,10 @@ const int MIN_r = 1;
 const int EASY_RND_MIN_N = 750;
 const int EASY_RND_MAX_N = 950;
 const int EASY_MAX_N = 1000;
-const int EASY_MIN_X = 10;
+const int EASY_MIN_X = 3;
 const int EASY_MAX_X = 1000;
 const int EASY_MAX_r = 1;
-// const int EASY_MAX_X = 20;
+// const int EASY_MAX_X = 5;
 
 const int NORMAL_SMALL_MIN_N = 10;
 const int NORMAL_SMALL_MAX_N = 30;

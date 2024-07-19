@@ -318,11 +318,11 @@ void make_sample_testcase(){
     {
         ofstream of("00_sample_01.in");
         of << "5" << endl;
-        of << "11 0 1" << endl;
-        of << "12 -12 1" << endl;
-        of << "12 12 1" << endl;
-        of << "16 -16 1" << endl;
-        of << "17 0 1" << endl;
+        of << "4 0 1" << endl;
+        of << "5 -5 1" << endl;
+        of << "3 3 1" << endl;
+        of << "3 -3 1" << endl;
+        of << "5 5 1" << endl;
         of.close();
     }
     {
