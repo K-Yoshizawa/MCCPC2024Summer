@@ -69,25 +69,18 @@ int main(int argc, char* argv[]){
     }
     for(int t = 1; t <= 2; ++t){
         ofstream of(format("25_hand_%02d.in", t));
-        of << "200000" << endl;
-        int y = rnd.next(1, 199990);
-        int x = 200000 - 1 - y;
+        of << "100000" << endl;
+        int y = rnd.next(1, 99990);
+        int x = 100000 - 1 - y;
         of << "t" << rnd.next("[au]{%d, %d}", x, x) << rnd.next("[t]{%d, %d}", y, y) << endl;
         of.close();
     }
     for(int t = 3; t <= 4; ++t){
         ofstream of(format("25_hand_%02d.in", t));
-        of << "200000" << endl;
-        int y = rnd.next(1, 199990);
-        int x = 200000 - 1 - y;
+        of << "100000" << endl;
+        int y = rnd.next(1, 99990);
+        int x = 100000 - 1 - y;
         of << rnd.next("[t]{%d, %d}", y, y) << rnd.next("[au]{%d, %d}", x, x) << "t" << endl;
-        of.close();
-    }
-    for(int t = 5; t <= 6; ++t){
-        ofstream of(format("25_hand_%02d.in", t));
-        of << "199999" << endl;
-        for(int i = 0; i < 99999; ++i) of << "t" << rnd.next("[abcdefghijklmnopqrsuvwxyz]{1, 1}");
-        of << "t" << endl;
         of.close();
     }
 
