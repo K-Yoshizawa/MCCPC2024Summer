@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// DATASET 2, 3, 6
+
 string S;
 
 string simple(int start, int end){
@@ -9,7 +11,7 @@ string simple(int start, int end){
         ret = S.substr(start + 2, end - start - 3);
         for(auto &c : ret) c = min('9', char(c + 1));
     }
-    else if(S[0] == 'H'){
+    else if(S[start] == 'H'){
         ret = S.substr(start + 2, end - start - 3);
         int ans = 0;
         for(auto c : ret) ans += (c - '0');
