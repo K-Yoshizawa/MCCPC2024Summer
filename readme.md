@@ -31,21 +31,21 @@
 
 ※最終更新 : 2024/7/12
 
-|Problem|Score|Subtask|Difficulty|問題名|
-|:-:|:--:|:--:|:--:|:--:|
-|A|100|-|Milk|MCC|
-|B|100|-|Milk|Worship|
-|C|150|50+100|Assam|Multiplication Table|
-|D|150|50+100|Assam|Addition and Division|
-|E|200|50+150|Benihuki|MCC Sequence (Calculate Version)|
-|F|200|100+100|Benihuki|Second Shortest Path in Pseudotree|
-|G|250|?|Ceylon|Let's Meet by the Promised Time|
-|H|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|
-|I|300|50+100+150|Darjeeling|Passing the Trash|
-|J|300|50+250|Darjeeling|TUAT String 4|
-|K|300|50+250|Darjeeling|MCC Sequence (Construct Version)|
-|L|350|75+125+150|Earlgray|Emotional View|
-|M|350|50+50+250|Earlgray|Even Even Path|
+|Problem|Score|Subtask|Difficulty|問題名|Tester|
+|:-:|:--:|:--:|:--:|:--:|:--:|
+|A|100|-|Milk|MCC|kichi2004|
+|B|100|-|Milk|Worship|kichi2004|
+|C|150|50+100|Assam|Multiplication Table|kichi2004|
+|D|150|50+100|Assam|Addition and Division|Nerve|
+|E|200|50+150|Benihuki|MCC Sequence (Calculate Version)|totori|
+|F|200|100+100|Benihuki|Second Shortest Path in Pseudotree|qLethon|
+|G|250|?|Ceylon|Let's Meet by the Promised Time|qLethon|
+|H|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|qLethon|
+|I|300|50+100+150|Darjeeling|Passing the Trash|kichi2004|
+|J|300|50+250|Darjeeling|TUAT String 4|Nerve|
+|K|300|50+250|Darjeeling|MCC Sequence (Construct Version)|totori|
+|L|350|75+125+150|Earlgray|Emotional View|Nerve|
+|M|350|50+50+250|Earlgray|Even Even Path|totori|
 
 以下はトップページ用
 
