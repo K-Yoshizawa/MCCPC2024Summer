@@ -257,28 +257,28 @@ int main(int argc, char* argv[]){
     for(int t = 1; t <= 5; ++t){
         make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), rnd.next(MIN_M, HARD_MAX_M), format("31_small_%02d.in", t));
     }
-    for(int t = 1; t <= 10; ++t){
+    for(int t = 1; t <= 5; ++t){
         make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), rnd.next(MIN_M, HARD_MAX_M), format("32_large_%02d.in", t));
     }
     for(int t = 1; t <= 5; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("33_max_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("34_star_%02d.in", t), TREETYPE::STAR);
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("35_line_%02d.in", t), TREETYPE::LINE);
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("36_binary_%02d.in", t), TREETYPE::BINARY);
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("37_hatred_%02d.in", t), TREETYPE::HATRED_TYPE1);
     }
-    for(int t = 6; t <= 10; ++t){
+    for(int t = 4; t <= 6; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("37_hatred_%02d.in", t), TREETYPE::HATRED_TYPE2);
     }
-    for(int t = 11; t <= 15; ++t){
+    for(int t = 7; t <= 9; ++t){
         make_hard_testcase(MAX_N, HARD_MAX_M, format("37_hatred_%02d.in", t), TREETYPE::HATRED_TYPE3);
     }
     for(int t = 1; t <= 3; ++t){

@@ -1,83 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template< int mod >
-struct ModInt {
-    int x;
-
-    ModInt() : x(0) {}
-
-    ModInt(int64_t y) : x(y >= 0 ? y % mod : (mod - (-y) % mod) % mod) {}
-
-    ModInt &operator+=(const ModInt &p) {
-        if((x += p.x) >= mod) x -= mod;
-        return *this;
-    }
-
-    ModInt &operator-=(const ModInt &p) {
-        if((x += mod - p.x) >= mod) x -= mod;
-        return *this;
-    }
-
-    ModInt &operator*=(const ModInt &p) {
-        x = (int) (1LL * x * p.x % mod);
-        return *this;
-    }
-
-    ModInt &operator/=(const ModInt &p) {
-        *this *= p.inverse();
-        return *this;
-    }
-
-    ModInt operator-() const { return ModInt(-x); }
-
-    ModInt operator+(const ModInt &p) const { return ModInt(*this) += p; }
-
-    ModInt operator-(const ModInt &p) const { return ModInt(*this) -= p; }
-
-    ModInt operator*(const ModInt &p) const { return ModInt(*this) *= p; }
-
-    ModInt operator/(const ModInt &p) const { return ModInt(*this) /= p; }
-
-    bool operator==(const ModInt &p) const { return x == p.x; }
-
-    bool operator!=(const ModInt &p) const { return x != p.x; }
-
-    ModInt inverse() const {
-        int a = x, b = mod, u = 1, v = 0, t;
-        while(b > 0) {
-            t = a / b;
-            swap(a -= t * b, b);
-            swap(u -= t * v, v);
-        }
-        return ModInt(u);
-    }
-
-    ModInt pow(int64_t n) const {
-        ModInt ret(1), mul(x);
-        while(n > 0) {
-            if(n & 1) ret *= mul;
-            mul *= mul;
-            n >>= 1;
-        }
-        return ret;
-    }
-
-    friend ostream &operator<<(ostream &os, const ModInt &p) {
-        return os << p.x;
-    }
-
-    friend istream &operator>>(istream &is, ModInt &a) {
-        int64_t t;
-        is >> t;
-        a = ModInt< mod >(t);
-        return (is);
-    }
-
-    static int get_mod() { return mod; }
-};
-
-using mint = ModInt< 998244353 >;
+using ll = long long;
 
 int main(){
     int N; cin >> N;
@@ -93,8 +17,8 @@ int main(){
     // vector<int> Q(M);
     // for(int i = 0; i < M; ++i) cin >> Q[i];
 
-    vector<mint> ans(N + 1, 0);
-    vector dp(N + 1, vector(2, vector(2, mint(0))));
+    vector<ll> ans(N + 1, 0);
+    vector dp(N + 1, vector(2, vector(2, ll(0))));
     auto rec = [&](auto self, int current, int parent) -> void {
         // cerr << "Vertex = " << current << " (Start)" << endl;
         ans[current] = (V[current] == 0);
@@ -111,7 +35,7 @@ int main(){
             }
         }
         if(V[current]){
-            // mint sum_of_even[2] = {0, 0}, sum_of_odd[2] = {0, 0}, sum_of_cross = 0;
+            // ll sum_of_even[2] = {0, 0}, sum_of_odd[2] = {0, 0}, sum_of_cross = 0;
             // for(auto child : G[current]){
             //     if(child == parent) continue;
             //     for(int l = 0; l < 2; ++l){
@@ -133,8 +57,8 @@ int main(){
             }
         }
         else{
-            // mint sum_of_square = 0;
-            // vector<vector<mint>> square_of_sum(2, vector<mint>(2, mint(0)));
+            // ll sum_of_square = 0;
+            // vector<vector<ll>> square_of_sum(2, vector<ll>(2, ll(0)));
             // for(auto child : G[current]){
             //     if(child == parent) continue;
             //     for(int w = 0; w < 2; ++w){
@@ -144,7 +68,7 @@ int main(){
             //         }
             //     }
             // }
-            // mint tmp = 0;
+            // ll tmp = 0;
             // for(int w = 0; w < 2; ++w){
             //     for(int l = 0; l < 2; ++l){
             //         square_of_sum[w][l] *= square_of_sum[w][l];
