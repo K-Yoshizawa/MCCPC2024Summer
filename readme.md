@@ -38,7 +38,7 @@
 |C|150|50+100|Assam|Multiplication Table|kichi2004|
 |D|150|50+100|Assam|Addition and Division|Nerve|
 |E|200|50+150|Benihuki|MCC Sequence (Calculate Version)|totori|
-|F|200|100+100|Benihuki|Second Shortest Path in Pseudotree|qLethon|
+|F|200|75+50+75|Benihuki|Second Shortest Path in Pseudotree|qLethon|
 |G|250|?|Ceylon|Let's Meet by the Promised Time|qLethon|
 |H|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|qLethon|
 |I|300|50+100+150|Darjeeling|Passing the Trash|kichi2004|
