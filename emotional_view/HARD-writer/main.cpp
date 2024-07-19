@@ -236,11 +236,11 @@ int main(){
     for(auto [_, i] : d_square){
         auto [left_value, right_value] = argment_list[i];
         int left = find(left_value), right = find(right_value);
-        VARIABLE(i);
-        VARIABLE(left);
-        VARIABLE(right);
+        // VARIABLE(i);
+        // VARIABLE(left);
+        // VARIABLE(right);
         if(left_value < 0 and right_value > 0 and x[i] < 0){
-            VARIABLE(seg.query(right, argments.size()) || seg.query(0, left + 1));
+            // VARIABLE(seg.query(right, argments.size()) || seg.query(0, left + 1));
             if(!(seg.query(right, argments.size()) || seg.query(0, left + 1))){
                 ans.push_back(i + 1);
             }
@@ -248,7 +248,7 @@ int main(){
             seg.update(0, left, 1);
         }
         else{
-            VARIABLE(seg.query(left, right + 1));
+            // VARIABLE(seg.query(left, right + 1));
             if(!seg.query(left, right + 1)) ans.push_back(i + 1);
             seg.update(left + 1, right, 1);
         }
