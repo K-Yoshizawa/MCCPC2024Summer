@@ -19,6 +19,11 @@ void make_sample_testcase(){
         of << "5 12345678901234567890" << endl;
         of.close();
     }
+    {
+        ofstream of("00_sample_04.in");
+        of << "2 1" << endl;
+        of.close();
+    }
 }
 
 void make_easy_testcase(int N, string case_name){
@@ -65,7 +70,7 @@ int main(int argc, char* argv[]){
     }
     {
         ofstream of("22_hand_03.in");
-        of << "3000 1" << rnd.next("[0]{99999}") << endl;
+        of << "100 1" << rnd.next("[0]{99999}") << endl;
         of.close();
     }
 

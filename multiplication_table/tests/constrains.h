@@ -1,7 +1,7 @@
 using ll = long long;
 
 const int MIN_N = 1;
-const int MAX_N = 3000;
+const int MAX_N = 100;
 const int MIN_M = 1;
 const int MAX_M = 100000;
 
