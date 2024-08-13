@@ -39,7 +39,7 @@
 |D|150|50+100|Assam|Addition and Division|Nerve|
 |E|200|50+150|Benihuki|MCC Sequence (Calculate Version)|totori|
 |F|200|75+50+75|Benihuki|Second Shortest Path in Pseudotree|qLethon|
-|G|250|?|Ceylon|Let's Meet by the Promised Time|qLethon|
+|G|250|75+50+125|Ceylon|Let's Meet by the Promised Time|qLethon|
 |H|250|10+15+15+20+20+35+35+100|Ceylon|Agricultual Expression|qLethon|
 |I|300|50+100+150|Darjeeling|Passing the Trash|kichi2004|
 |J|300|50+250|Darjeeling|TUAT String 4|Nerve|
@@ -56,8 +56,8 @@
 |C|150|50+100|Assam|
 |D|150|50+100|Assam|
 |E|200|50+150|Benihuki|
-|F|200|100+100|Benihuki|
-|G|250|?|Ceylon|
+|F|200|75+50+75|Benihuki|
+|G|250|75+50+125|Ceylon|
 |H|250|10+15+15+20+20+35+35+100|Ceylon|
 |I|300|50+100+150|Darjeeling|
 |J|300|50+250|Darjeeling|
