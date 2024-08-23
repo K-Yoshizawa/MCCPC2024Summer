@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define VARIABLE(x) cerr << "Variable " << #x << " = " << (x) << endl;
+#define VARIABLE(x) cerr << "# " << #x << " = " << (x) << endl;
 
 /**
  * @file LazySegmentTree.hpp
@@ -192,7 +192,7 @@ struct LazySegmentTree{
 using ll = long long;
 using ld = long double;
 
-const ll offset = 1000000000000LL;
+const ll offset = 1000000000000000LL;
 
 int main(){
     int N; cin >> N;
@@ -214,10 +214,10 @@ int main(){
         P p1, p2;
         p1 = {coef * (d[i] * x[i] - r[i] * y[i]), coef * (d[i] * y[i] + r[i] * x[i])};
         p2 = {coef * (d[i] * x[i] + r[i] * y[i]), coef * (d[i] * y[i] - r[i] * x[i])};
-        ld arg1 = atan2l(p1.second, p1.first), arg2 = atan2l(p2.second, p2.first);
-        ll arg_conv_1 = arg1 * offset, arg_conv_2 = arg2 * offset;
+        ld arg1 = atan2l(p1.second, p1.first), arg2 = atan2l(p2.second, p2.first), arg3 = atan2l(y[i], x[i]);
+        ll arg_conv_1 = arg1 * offset, arg_conv_2 = arg2 * offset, arg_conv_3 = arg3 * offset;
         argment_list[i] = {min(arg_conv_1, arg_conv_2), max(arg_conv_1, arg_conv_2)};
-        argments.push_back(arg_conv_1), argments.push_back(arg_conv_2);
+        argments.push_back(arg_conv_1), argments.push_back(arg_conv_2), argments.push_back(arg_conv_3);
     }
     sort(d_square.begin(), d_square.end());
     argments.push_back(acosl(-1) * offset);
@@ -236,7 +236,10 @@ int main(){
     for(auto [_, i] : d_square){
         auto [left_value, right_value] = argment_list[i];
         int left = find(left_value), right = find(right_value);
-        // VARIABLE(i);
+        // VARIABLE(i + 1);
+        // VARIABLE(x[i]);
+        // VARIABLE(y[i]);
+        // VARIABLE(r[i]);
         // VARIABLE(left);
         // VARIABLE(right);
         if(left_value < 0 and right_value > 0 and x[i] < 0){
