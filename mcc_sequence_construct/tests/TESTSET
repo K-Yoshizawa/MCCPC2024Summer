@@ -19,7 +19,7 @@ cxx_validator(src='validator.cpp', dependency=['testlib.h'])
 
 ## Output judges.
 #c_judge(src='judge.c')
-cxx_judge(src='judge.cpp', dependency=['testlib.h'], variant=testlib_judge_runner)
+cxx_judge(src='judge.cpp', flags=['-O2', '-std=c++2a', '-DLOCAL'], dependency=['testlib.h'], variant=testlib_judge_runner)
 #java_judge(src='Judge.java', encoding='UTF-8', mainclass='Judge')
 #rust_judge(src='judge.rs')
 #go_judge(src='judge.go')

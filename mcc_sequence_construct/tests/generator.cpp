@@ -11,6 +11,8 @@ void make_sample_testcase(){
     }
 }
 
+int sub_M[] = {2, 3, 5, 8, 13, 21, 34, 55, 89, 144};
+
 int main(int argc, char* argv[]){
     registerGen(argc, argv, 1);
 
@@ -18,9 +20,9 @@ int main(int argc, char* argv[]){
     make_sample_testcase();
 
     // 1* Easy
-    for(int t = 0; t <= 5; ++t){
-        ofstream of(format("10_M_equals_%02d.in", t));
-        of << t << endl;
+    for(int t = 0; t < 10; ++t){
+        ofstream of(format("1%d_M_equal_%d.in", t, sub_M[t]));
+        of << sub_M[t] << endl;
         of.close();
     }
 
