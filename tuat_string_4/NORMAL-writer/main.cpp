@@ -82,17 +82,16 @@ struct ModInt {
 using mint = ModInt< 998244353 >;
 
 int main(){
-    int N; cin >> N;
-    string S; cin >> S;
+    int N, M; cin >> N >> M;
+    vector<int> C(N); for(auto &c : C) cin >> c, --c;
     
-    vector<vector<int>> where(26);
-    vector<vector<ll>> freq(26, vector<ll>(N, 0));
+    vector<vector<int>> where(M);
+    vector<vector<ll>> freq(M, vector<ll>(N, 0));
     for(int i = 0; i < N; ++i){
-        int s = S[i] - 'a';
-        ++freq[s][i];
-        where[s].push_back(i);
+        ++freq[C[i]][i];
+        where[C[i]].push_back(i);
     }
-    for(int c = 0; c < 26; ++c){
+    for(int c = 0; c < M; ++c){
         for(int i = 1; i < N; ++i){
             freq[c][i] += freq[c][i - 1];
         }
@@ -104,17 +103,17 @@ int main(){
 
     mint ans = 0;
     for(int i = 0; i < N; ++i){
-        int ci = S[i] - 'a';
+        int ci = C[i];
         for(int j = i + 1; j < N; ++j){
-            int cj = S[j] - 'a';
+            int cj = C[j];
             if(ci != cj) continue;
-            vector<mint> cnt(26, 0);
-            for(int c = 0; c < 26; ++c){
+            vector<mint> cnt(M, 0);
+            for(int c = 0; c < M; ++c){
                 if(c == ci) continue;
                 cnt[c] = f(c, i, j);
             }
-            for(int c = 0; c < 26; ++c){
-                for(int d = c + 1; d < 26; ++d){
+            for(int c = 0; c < M; ++c){
+                for(int d = c + 1; d < M; ++d){
                     ans += cnt[c] * cnt[d];
                 }
             }

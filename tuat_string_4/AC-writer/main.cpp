@@ -82,35 +82,38 @@ struct ModInt {
 using mint = ModInt< 998244353 >;
 
 int main(){
-    int N; cin >> N;
-    string S; cin >> S;
+    int N, M; cin >> N >> M;
+    // string S; cin >> S;
+    vector<int> C(N);
+    for(auto &c : C) cin >> c, --c;
     
-    vector<vector<int>> where(26);
-    vector<vector<ll>> freq(26, vector<ll>(N, 0));
+    vector<vector<int>> where(M);
+    vector<vector<ll>> freq(M, vector<ll>(N, 0));
     for(int i = 0; i < N; ++i){
-        int s = S[i] - 'a';
-        ++freq[s][i];
-        where[s].push_back(i);
+        ++freq[C[i]][i];
+        where[C[i]].push_back(i);
     }
-    for(int c = 0; c < 26; ++c){
+    for(int c = 0; c < M; ++c){
         for(int i = 1; i < N; ++i){
             freq[c][i] += freq[c][i - 1];
         }
     }
 
-    auto f = [&](char c, int i, int j){
+    auto f = [&](int c, int i, int j){
         return mint(freq[c][j] - freq[c][i]);
     };
 
     mint ans = 0;
-    for(int c = 0; c < 26; ++c){
+    for(int c = 0; c < M; ++c){
         // bool print_flag_c = (c + 'a' == 't' or c + 'a' == 'u' or c + 'a' == 'a');
         // if(print_flag_c) cerr << "c = " << (char)('a' + c) << endl;
         int x = where[c].size();
-        vector<mint> sum(26, 0);
-        vector<vector<mint>> left_cum(26, vector<mint>(x, 0));
-        vector<vector<mint>> right_cum(26, vector<mint>(x, 0));
-        for(int c1 = 0; c1 < 26; ++c1){
+        vector<mint> sum(M, 0);
+        vector<vector<mint>> left_cum(M, vector<mint>(x, 0));
+        vector<vector<mint>> right_cum(M, vector<mint>(x, 0));
+        vector<mint> left_cum_sum(x, 0);
+        vector<mint> right_cum_sum(x, 0);
+        for(int c1 = 0; c1 < M; ++c1){
             // bool print_flag_c1 = (c1 + 'a' == 't' or c1 + 'a' == 'u' or c1 + 'a' == 'a');
             for(int i = 0; i < x - 1; ++i){
                 int l = where[c][i], r = where[c][i + 1] - 1;
@@ -135,6 +138,10 @@ int main(){
             for(int i = x - 2; i >= 0; --i){
                 right_cum[c1][i] += right_cum[c1][i + 1];
             }
+            for(int i = 0; i < x; ++i){
+                left_cum_sum[i] += left_cum[c1][i];
+                right_cum_sum[i] += right_cum[c1][i];
+            }
             // if(print_flag_c and print_flag_c1){
             //     cerr << " - " << (char)('a' + c1) << " left_cum : ";
             //     for(int i = 0; i < x - 1; ++i) cerr << left_cum[c1][i] << " ";
@@ -146,17 +153,20 @@ int main(){
         }
         mint all_sum = reduce(sum.begin(), sum.end());
         // if(print_flag_c) cerr << " - all_sum = " << all_sum << endl;
-        for(int c1 = 0; c1 < 26; ++c1){
+        for(int c1 = 0; c1 < M; ++c1){
             // bool print_flag_c1 = (c1 + 'a' == 't' or c1 + 'a' == 'u' or c1 + 'a' == 'a');
             mint sub_sum = all_sum - sum[c1];
             // if(print_flag_c and print_flag_c1) cerr << " - c1 = " << (char)('a' + c1) << ", sub_sum = " << sub_sum << endl;
             for(int i = 0; i < x - 1; ++i){
                 int l = where[c][i], r = where[c][i + 1] - 1;
                 mint tmp_sum = sub_sum;
-                for(int c2 = 0; c2 < 26; ++c2){
-                    if(c1 == c2) continue;
-                    tmp_sum -= left_cum[c2][i - 1] * (x - i - 1) + right_cum[c2][i + 1] * (i + 1);
-                }
+                if(i > 0) tmp_sum += left_cum[c1][i - 1] * (x - i - 1) - left_cum_sum[i - 1] * (x - i - 1);
+                tmp_sum += right_cum[c1][i + 1] * (i + 1);
+                tmp_sum -= right_cum_sum[i + 1] * (i + 1);
+                // for(int c2 = 0; c2 < M; ++c2){
+                //     if(c1 == c2) continue;
+                //     tmp_sum -= left_cum[c2][i - 1] * (x - i - 1) + right_cum[c2][i + 1] * (i + 1);
+                // }
                 // if(print_flag_c and print_flag_c1){
                 //     cerr << " -  - i = " << i << " -> " << f(c1, l, r) << " * " << tmp_sum << endl;
                 // }

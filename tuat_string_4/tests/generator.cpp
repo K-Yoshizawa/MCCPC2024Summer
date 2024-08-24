@@ -6,42 +6,30 @@ using namespace std;
 void make_sample_testcase(){
     {
         ofstream of("00_sample_01.in");
-        of << "10" << endl;
-        of << "tuatuatuat" << endl;
+        of << "9 26" << endl;
+        of << "16 18 15 3 5 19 19 15 18" << endl;
         of.close();
     }
     {
         ofstream of("00_sample_02.in");
-        of << "4" << endl;
-        of << "tuat" << endl;
+        of << "4 26" << endl;
+        of << "20 21 1 20" << endl;
         of.close();
     }
     {
         ofstream of("00_sample_03.in");
-        of << "11" << endl;
-        of << "mississippi" << endl;
+        of << "11 26" << endl;
+        of << "13 9 19 19 9 19 19 9 16 16 9" << endl;
         of.close();
     }
 }
 
-void make_easy_testcase(int N, string case_name, int use = 3){
-    array<char, 26> alpha;
-    iota(alpha.begin(), alpha.end(), 'a');
-    shuffle(alpha.begin(), alpha.end());
-    string uses;
-    for(int i = 0; i < use; ++i) uses.push_back(alpha[i]);
-    string S = rnd.next(format("[%s]{%d}", uses.c_str(), N));
+void make_testcase(int N, int M, string case_name){
     ofstream of(case_name.c_str());
-    of << N << endl;
-    of << S << endl;
-    of.close();
-}
-
-void make_hard_testcase(int N, string case_name, string pattern = "a-z"){
-    string S = rnd.next(format("[%s]{%d}", pattern.c_str(), N));
-    ofstream of(case_name.c_str());
-    of << N << endl;
-    of << S << endl;
+    of << N << " " << M << endl;
+    for(int i = 1; i <= N; ++i){
+        of << rnd.next(1, M) << " \n"[i == N];
+    }
     of.close();
 }
 
@@ -51,64 +39,45 @@ int main(int argc, char* argv[]){
     make_sample_testcase();
 
     for(int t = 1; t <= 7; ++t){
-        make_easy_testcase(rnd.next(EASY_RND_MIN_N, EASY_RND_MAX_N), format("11_random_%02d.in", t), rnd.next(3, 5));
+        make_testcase(rnd.next(EASY_RND_MIN_N, EASY_RND_MAX_N), 26, format("11_random_%02d.in", t));
     }
     for(int t = 1; t <= 3; ++t){
-        make_easy_testcase(rnd.next(EASY_MAX_N, EASY_MAX_N), format("12_max_%02d.in", t));
+        make_testcase(rnd.next(EASY_MAX_N, EASY_MAX_N), 26, format("12_max_%02d.in", t));
     }
     {
         ofstream of("13_min_01.in");
-        of << "4" << endl;
-        of << "taut" << endl;
+        of << "4 26" << endl;
+        of << "20 1 21 20" << endl;
         of.close();
     }
     {
         ofstream of("13_min_02.in");
-        of << "4" << endl;
-        of << "aatu" << endl;
+        of << "4 26" << endl;
+        of << "1 1 20 21" << endl;
         of.close();
     }
     {
         ofstream of("13_min_03.in");
-        of << "4" << endl;
-        of << "atuu" << endl;
+        of << "4 26" << endl;
+        of << "1 20 21 21" << endl;
         of.close();
+    }
+
+    for(int t = 1; t <= 7; ++t){
+        make_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), 26, format("21_random_%02d.in", t));
+    }
+    for(int t = 1; t <= 3; ++t){
+        make_testcase(MAX_N, 26, format("22_max_%02d.in", t));
     }
 
     for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(NORMAL_RND_MIN_N, NORMAL_RND_MAX_N), format("21_random_%02d.in", t));
+        make_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_M, LARGE_MAX_M), format("31_random_%02d.in", t));
     }
     for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(rnd.next(NORMAL_MAX_N, NORMAL_MAX_N), format("22_max_%02d.in", t));
-    }
-
-    for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), format("31_small_%02d.in", t));
+        make_testcase(MAX_N, MIN_M, format("32_max_dense_%02d.in", t));
     }
     for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("32_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(rnd.next(MAX_N, MAX_N), format("33_max_%02d.in", t));
-    }
-    for(int t = 1; t <= 3; ++t){
-        make_hard_testcase(rnd.next(MAX_N, MAX_N), format("34_tuat_%02d.in", t), "tua");
-    }
-    for(int t = 1; t <= 2; ++t){
-        ofstream of(format("35_hand_%02d.in", t));
-        of << "100000" << endl;
-        int y = rnd.next(1, 99990);
-        int x = 100000 - 1 - y;
-        of << "t" << rnd.next("[au]{%d, %d}", x, x) << rnd.next("[t]{%d, %d}", y, y) << endl;
-        of.close();
-    }
-    for(int t = 3; t <= 4; ++t){
-        ofstream of(format("35_hand_%02d.in", t));
-        of << "100000" << endl;
-        int y = rnd.next(1, 99990);
-        int x = 100000 - 1 - y;
-        of << rnd.next("[t]{%d, %d}", y, y) << rnd.next("[au]{%d, %d}", x, x) << "t" << endl;
-        of.close();
+        make_testcase(MAX_N, MAX_M, format("33_max_sparse_%02d.in", t));
     }
 
     return 0;
