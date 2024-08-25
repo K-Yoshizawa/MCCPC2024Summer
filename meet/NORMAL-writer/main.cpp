@@ -5,6 +5,7 @@ using ll = long long;
 
 int main(){
     int N, M; cin >> N >> M;
+    assert(M == N - 1);
     vector<vector<pair<int, ll>>> G(N + 1);
     for(int i = 0; i < M; ++i){
         int A, B, C; cin >> A >> B >> C;

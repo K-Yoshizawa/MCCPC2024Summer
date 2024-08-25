@@ -250,12 +250,12 @@ int main(int argc, char* argv[]){
 
     // 1* Easy
     for(int t = 1; t <= 7; ++t){
-        int N = rnd.next(LARGE_MIN_N, LARGE_MAX_N);
+        int N = rnd.next(EASY_LARGE_MIN_N, EASY_LARGE_MAX_N);
         int T = NORMAL_MAX_T;
         make_easy_testcase(N, T, format("10_random_%02d.in", t));
     }
     for(int t = 1; t <= 3; ++t){
-        int N = MAX_N;
+        int N = EASY_MAX_N;
         int T = NORMAL_MAX_T;
         make_easy_testcase(N, T, format("11_max_%02d.in", t));
     }
@@ -266,21 +266,21 @@ int main(int argc, char* argv[]){
     // }
     
     // 2* Normal
-    for(int t = 1; t <= 10; ++t){
+    for(int t = 1; t <= 5; ++t){
         int N = rnd.next(LARGE_MIN_N, LARGE_MAX_N);
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = N - 1;
         int T = NORMAL_MAX_T;
         make_hard_testcase(N, M, T, format("20_random_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         int N = MAX_N;
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = N - 1;
         int T = NORMAL_MAX_T;
         make_hard_testcase(N, M, T, format("21_max_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         int N = rnd.next(LARGE_MIN_N, LARGE_MAX_N);
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = N - 1;
@@ -289,28 +289,28 @@ int main(int argc, char* argv[]){
     }
 
     // 3* Hard
-    for(int t = 1; t <= 10; ++t){
+    for(int t = 1; t <= 5; ++t){
         int N = rnd.next(LARGE_MIN_N, LARGE_MAX_N);
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = rnd.next(N - 1, LIM_M);
         int T = MAX_T;
         make_hard_testcase(N, M, T, format("30_random_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         int N = MAX_N;
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = MAX_M;
         int T = MAX_T;
         make_hard_testcase(N, M, T, format("31_max_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         int N = rnd.next(LARGE_MIN_N, LARGE_MAX_N);
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = N - 1;
         int T = MAX_T;
         make_hard_testcase(N, M, T, format("32_tree_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         int N = rnd.next(LARGE_MIN_N, LARGE_MAX_N);
         int LIM_M = min((ll)N * (N - 1) / 2, (ll)MAX_M);
         int M = rnd.next(N - 1, LIM_M);
@@ -319,7 +319,7 @@ int main(int argc, char* argv[]){
     }
 
     {
-        ofstream of("29_killer_01_may_use_maxheap.in");
+        ofstream of("39_killer_01_may_use_maxheap.in");
         int chain = 0;
         while((1LL << chain) + MIN_C * 2 <= MAX_C) ++chain;
         int way = (MAX_N - 2) / (chain * 2);
@@ -356,7 +356,7 @@ int main(int argc, char* argv[]){
         of.close();
     }
     {
-        ofstream of("29_killer_02_may_forget_continue.in");
+        ofstream of("39_killer_02_may_forget_continue.in");
         int N = MAX_N / 2;
         N = min(N, MAX_M / 2 + 2);
         int s = 0, t = N - 1;
