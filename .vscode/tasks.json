@@ -6,12 +6,12 @@
         {
             "label": "compile",
             "type": "shell",
-            "command": "g++-12 ${file} -std=c++2a -O2"
+            "command": "g++-12 ${file} -std=c++2a -O2 -fsplit-stack"
         },
         {
             "label": "test",
             "type": "shell",
-            "command": "./a.out < ${file}"
+            "command": "./a.out < in.txt"
         },
     ]
 }

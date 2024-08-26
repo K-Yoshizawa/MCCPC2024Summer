@@ -1,75 +1,87 @@
-#include <bits/stdc++.h>
+// Solution of Hard (author : log_K)
+
+#include <iostream>
+#include <vector>
+#include <array>
+#include <cassert>
 using namespace std;
 
 using ll = long long;
 
 int main(){
+    cin.tie(0)->sync_with_stdio(false);
     int N; cin >> N;
+    assert(N <= 2000);
     vector<int> V(N + 1);
     for(int i = 1; i <= N; ++i) cin >> V[i];
-    vector<vector<int>> G(N + 1);
+    vector<vector<int>> T(N + 1);
     for(int i = 0; i < N - 1; ++i){
         int A, B; cin >> A >> B;
-        G[A].push_back(B);
-        G[B].push_back(A);
+        T[A].push_back(B);
+        T[B].push_back(A);
     }
-    // int M; cin >> M;
-    // vector<int> Q(M);
-    // for(int i = 0; i < M; ++i) cin >> Q[i];
 
-    vector<ll> ans(N + 1, 0);
-    vector dp(N + 1, vector(2, vector(2, ll(0))));
-    auto rec = [&](auto self, int current, int parent) -> void {
-        // cerr << "Vertex = " << current << " (Start)" << endl;
-        ans[current] = (V[current] == 0);
-        dp[current][V[current]][0] = 1;
-        for(auto child : G[current]){
+    vector<ll> ans(N + 1);
+    // (重み, 長さ) = (0,0) (0,1) (1,0) (1,1)
+    vector<int> parent_list(N + 1);
+    auto rec = [&](auto self, int current, int parent, bool first = false) -> array<ll, 4> {
+        if(first) parent_list[current] = parent;
+        ans[current] = 0;
+        array<ll, 4> ret = {};
+        for(auto child : T[current]){
             if(child == parent) continue;
-            self(self, child, current);
+            auto [c00, c01, c10, c11] = self(self, child, current, first);
             ans[current] += ans[child];
-            ans[current] += dp[child][V[current]][1];
-            for(int w = 0; w < 2; ++w){
-                for(int l = 0; l < 2; ++l){
-                    dp[current][w][l] += dp[child][w ^ V[current]][l ^ 1];
-                }
+            swap(c00, c01);
+            swap(c10, c11);
+            if(V[current] == 0){
+                ans[current] += ret[0b00] * c00;
+                ans[current] += ret[0b01] * c01;
+                ans[current] += ret[0b10] * c10;
+                ans[current] += ret[0b11] * c11;
             }
+            else{
+                ans[current] += ret[0b00] * c10;
+                ans[current] += ret[0b01] * c11;
+                ans[current] += ret[0b10] * c00;
+                ans[current] += ret[0b11] * c01;
+            }
+            ret[0b00] += c00;
+            ret[0b01] += c01;
+            ret[0b10] += c10;
+            ret[0b11] += c11;
         }
-        if(V[current]){
-            ll sum_of_even[2] = {0, 0}, sum_of_odd[2] = {0, 0}, sum_of_cross = 0;
-            for(auto child : G[current]){
-                if(child == parent) continue;
-                for(int l = 0; l < 2; ++l){
-                    sum_of_even[l] += dp[child][0][l];
-                    sum_of_odd[l] += dp[child][1][l];
-                    sum_of_cross += dp[child][0][l] * dp[child][1][l];
-                }
-            }
-            ans[current] += sum_of_even[0] * sum_of_odd[0] + sum_of_even[1] * sum_of_odd[1] - sum_of_cross;
+        if(V[current] == 0){
+            ++ret[0b00];
         }
         else{
-            ll sum_of_square = 0;
-            vector<vector<ll>> square_of_sum(2, vector<ll>(2, ll(0)));
-            for(auto child : G[current]){
-                if(child == parent) continue;
-                for(int w = 0; w < 2; ++w){
-                    for(int l = 0; l < 2; ++l){
-                        sum_of_square += dp[child][w][l] * dp[child][w][l];
-                        square_of_sum[w][l] += dp[child][w][l];
-                    }
-                }
-            }
-            ll tmp = 0;
-            for(int w = 0; w < 2; ++w){
-                for(int l = 0; l < 2; ++l){
-                    square_of_sum[w][l] *= square_of_sum[w][l];
-                    tmp += square_of_sum[w][l];
-                }
-            }
-            ans[current] += (tmp - sum_of_square) / 2;
+            swap(ret[0b00], ret[0b10]);
+            swap(ret[0b01], ret[0b11]);
+            ++ret[0b10];
         }
-        // cerr << "Vertex = " << current << " (End)" << endl;
+        ans[current] += ret[0b00];
+        return ret;
     };
-    
-    rec(rec, 1, 0);
-    cout << ans[1] << endl;
+
+    auto flip = [&](auto self, int current) -> void {
+        V[current] = 1 - V[current];
+        for(auto child : T[current]){
+            if(child == parent_list[current]) continue;
+            self(self, child);
+        }
+        return;
+    };
+
+    // 最初の問題を解く
+    {
+        rec(rec, 1, 0, true);
+        cout << ans[1] << endl;
+    }
+    // i = 1, ..., N について解く
+    for(int i = 1; i <= N; ++i){
+        flip(flip, i);
+        rec(rec, 1, 0);
+        cout << ans[1] << endl;
+        flip(flip, i);
+    }
 }

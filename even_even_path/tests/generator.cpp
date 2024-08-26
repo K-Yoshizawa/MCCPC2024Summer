@@ -72,14 +72,8 @@ vector<pair<int, int>> make_line(int N){
 
 vector<pair<int, int>> make_binary(int N){
     vector<pair<int, int>> ret;
-    vector<int> vertex(N);
-    iota(vertex.begin(), vertex.end(), 1);
-    shuffle(vertex.begin(), vertex.end());
-    vertex.push_back(0);
-    reverse(vertex.begin(), vertex.end());
-    for(int i = 1; i <= N; ++i){
-        if(i * 2 + 0 <= N) ret.emplace_back(min(vertex[i], vertex[i * 2 + 0]), max(vertex[i], vertex[i * 2 + 0]));
-        if(i * 2 + 1 <= N) ret.emplace_back(min(vertex[i], vertex[i * 2 + 1]), max(vertex[i], vertex[i * 2 + 1]));
+    for(int i = 1; i < N; ++i){
+        ret.emplace_back((i + 1) / 2, (i + 1));
     }
     return ret;
 }
@@ -105,25 +99,37 @@ vector<pair<int, int>> make_hatred(int N, int M, int K){
 }
 
 void make_sample_testcase(){
+    // {
+    //     ofstream of("00_sample_01.in");
+    //     of << "4" << endl;
+    //     of << "0 1 0 1" << endl;
+    //     of << "1 2" << endl;
+    //     of << "2 3" << endl;
+    //     of << "3 4" << endl;
+    //     of.close();
+    // }
+    // {
+    //     ofstream of("00_sample_02.in");
+    //     of << "7" << endl;
+    //     of << "0 0 1 1 0 0 1" << endl;
+    //     of << "1 2" << endl;
+    //     of << "2 3" << endl;
+    //     of << "2 4" << endl;
+    //     of << "2 5" << endl;
+    //     of << "2 6" << endl;
+    //     of << "2 7" << endl;
+    //     of.close();
+    // }
     {
-        ofstream of("00_sample_01.in");
-        of << "4" << endl;
-        of << "0 1 0 1" << endl;
-        of << "1 2" << endl;
-        of << "2 3" << endl;
-        of << "3 4" << endl;
-        of.close();
-    }
-    {
-        ofstream of("00_sample_02.in");
+        ofstream of("00_sample_04.in");
         of << "7" << endl;
-        of << "0 0 1 1 0 0 1" << endl;
+        of << "1 0 0 1 0 1 0" << endl;
         of << "1 2" << endl;
-        of << "2 3" << endl;
+        of << "1 3" << endl;
         of << "2 4" << endl;
         of << "2 5" << endl;
         of << "2 6" << endl;
-        of << "2 7" << endl;
+        of << "3 7" << endl;
         of.close();
     }
 }
@@ -162,30 +168,13 @@ void make_normal_testcase(int N, string case_name, TREETYPE tree_type = TREETYPE
     of.close();
 }
 
-void make_hard_testcase(int N, int M, string case_name, TREETYPE tree_type = TREETYPE::RANDOM){
+void make_hard_testcase(int N, string case_name, TREETYPE tree_type = TREETYPE::RANDOM){
     ofstream of(case_name.c_str());
     of << N << endl;
     for(int i = 1; i <= N; ++i) of << rnd.next(0, 1) << " \n"[i == N];
     for(auto [A, B] : get_tree(N, tree_type)){
         of << A << " " << B << endl;
     }
-    // of << M << endl;
-    // bool prev_zero = false;
-    // for(int i = 1; i <= M; ++i){
-    //     if(prev_zero){
-    //         of << rnd.next(1, N) << " \n"[i == M];
-    //         prev_zero = false;
-    //     }
-    //     else{
-    //         if(!rnd.next(2)){
-    //             of << 0 << " \n"[i == M];
-    //             prev_zero = true;
-    //         }
-    //         else{
-    //             of << rnd.next(1, N) << " \n"[i == M];
-    //         }
-    //     }
-    // }
     of.close();
 }
 
@@ -195,94 +184,76 @@ int main(int argc, char* argv[]){
     // 00 sample
     make_sample_testcase();
 
+    // for(int t = 1; t <= 50; ++t){
+    //     make_hard_testcase(1000, format("90_random_%02d.in", t));
+    // }
+    make_hard_testcase(7, format("90_random_01.in"), TREETYPE::BINARY);
+
     // 1* Easy
-    for(int t = 1; t <= 5; ++t){
-        make_easy_testcase(rnd.next(1, EASY_MAX_N), format("10_random_%02d.in", t));
+    for(int t = 1; t <= 7; ++t){
+        int n = rnd.next(EASY_MIN_n, EASY_MAX_n);
+        make_hard_testcase((1 << n) - 1, format("11_random_%02d.in", t), TREETYPE::BINARY);
     }
-    for(int t = 6; t <= 10; ++t){
-        make_easy_testcase(EASY_MAX_N, format("10_random_%02d.in", t));
+    for(int t = 1; t <= 3; ++t){
+        make_hard_testcase(EASY_MAX_N, format("12_max_%02d.in", t), TREETYPE::BINARY);
     }
     {
-        ofstream of("19_hand_01.in");
-        of << "1" << endl;
-        of << "0" << endl;
+        ofstream of(format("13_min_01.in"));
+        of << "1\n";
+        of << "0\n";
         of.close();
     }
     {
-        ofstream of("19_hand_02.in");
-        of << "1" << endl;
-        of << "1" << endl;
+        ofstream of(format("13_min_02.in"));
+        of << "1\n";
+        of << "1\n";
         of.close();
     }
 
     // 2* Normal
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("21_small_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(rnd.next(NORMAL_LARGE_MIN_N, NORMAL_LARGE_MAX_N), format("22_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("23_max_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("24_star_%02d.in", t), TREETYPE::STAR);
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("25_line_%02d.in", t), TREETYPE::LINE);
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("26_binary_%02d.in", t), TREETYPE::BINARY);
+    for(int t = 1; t <= 7; ++t){
+        int n = rnd.next(NORMAL_MIN_n, NORMAL_MAX_n);
+        make_hard_testcase((1 << n) - 1, format("21_random_%02d.in", t), TREETYPE::BINARY);
     }
     for(int t = 1; t <= 3; ++t){
-        ofstream of(format("28_zero_%02d.in", t));
-        of << NORMAL_MAX_N << endl;
-        for(int i = 1; i <= NORMAL_MAX_N; ++i) of << 0 << " \n"[i == NORMAL_MAX_N];
-        for(auto [A, B] : get_tree(NORMAL_MAX_N, TREETYPE::RANDOM)){
-            of << A << " " << B << endl;
-        }
-        of.close();
-    }
-    for(int t = 1; t <= 3; ++t){
-        ofstream of(format("29_one_%02d.in", t));
-        of << NORMAL_MAX_N << endl;
-        for(int i = 1; i <= NORMAL_MAX_N; ++i) of << 1 << " \n"[i == NORMAL_MAX_N];
-        for(auto [A, B] : get_tree(NORMAL_MAX_N, TREETYPE::RANDOM)){
-            of << A << " " << B << endl;
-        }
-        of.close();
+        make_hard_testcase(NORMAL_MAX_N, format("22_max_%02d.in", t), TREETYPE::BINARY);
     }
 
     // 3* Hard
-    for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), rnd.next(MIN_M, HARD_MAX_M), format("31_small_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), rnd.next(MIN_M, HARD_MAX_M), format("32_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("33_max_%02d.in", t));
+    for(int t = 1; t <= 7; ++t){
+        make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("31_random_%02d.in", t));
     }
     for(int t = 1; t <= 3; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("34_star_%02d.in", t), TREETYPE::STAR);
+        make_hard_testcase(HARD_MAX_N, format("32_max_%02d.in", t));
     }
     for(int t = 1; t <= 3; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("35_line_%02d.in", t), TREETYPE::LINE);
+        make_hard_testcase(HARD_MAX_N, format("33_star_%02d.in", t), TREETYPE::STAR);
     }
     for(int t = 1; t <= 3; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("36_binary_%02d.in", t), TREETYPE::BINARY);
+        make_hard_testcase(HARD_MAX_N, format("34_line_%02d.in", t), TREETYPE::LINE);
     }
     for(int t = 1; t <= 3; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("37_hatred_%02d.in", t), TREETYPE::HATRED_TYPE1);
+        make_hard_testcase(HARD_MAX_N, format("35_binary_%02d.in", t), TREETYPE::BINARY);
     }
-    for(int t = 4; t <= 6; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("37_hatred_%02d.in", t), TREETYPE::HATRED_TYPE2);
-    }
-    for(int t = 7; t <= 9; ++t){
-        make_hard_testcase(MAX_N, HARD_MAX_M, format("37_hatred_%02d.in", t), TREETYPE::HATRED_TYPE3);
+
+    // 4* Final
+    for(int t = 1; t <= 10; ++t){
+        make_hard_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), format("41_random_%02d.in", t));
     }
     for(int t = 1; t <= 3; ++t){
-        ofstream of(format("38_zero_%02d.in", t));
+        make_hard_testcase(MAX_N, format("42_max_%02d.in", t));
+    }
+    for(int t = 1; t <= 3; ++t){
+        make_hard_testcase(MAX_N, format("43_star_%02d.in", t), TREETYPE::STAR);
+    }
+    for(int t = 1; t <= 3; ++t){
+        make_hard_testcase(MAX_N, format("44_line_%02d.in", t), TREETYPE::LINE);
+    }
+    for(int t = 1; t <= 3; ++t){
+        make_hard_testcase(MAX_N, format("45_binary_%02d.in", t), TREETYPE::BINARY);
+    }
+    for(int t = 1; t <= 3; ++t){
+        ofstream of(format("46_zero_%02d.in", t));
         of << MAX_N << endl;
         for(int i = 1; i <= MAX_N; ++i) of << 0 << " \n"[i == MAX_N];
         for(auto [A, B] : get_tree(MAX_N, TREETYPE::RANDOM)){
@@ -291,7 +262,7 @@ int main(int argc, char* argv[]){
         of.close();
     }
     for(int t = 1; t <= 3; ++t){
-        ofstream of(format("39_one_%02d.in", t));
+        ofstream of(format("47_one_%02d.in", t));
         of << MAX_N << endl;
         for(int i = 1; i <= MAX_N; ++i) of << 1 << " \n"[i == MAX_N];
         for(auto [A, B] : get_tree(MAX_N, TREETYPE::RANDOM)){
