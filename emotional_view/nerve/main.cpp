@@ -40,7 +40,7 @@ void verr(H &&h, T &&...t) {}
 #endif
 
 const ll INF = 4e18;
-const ld EPS = 1e-9;
+const ld EPS = 1e-11;
 const ld PI = acos(-1.0L);
 // const ll MOD = 1e9 + 7;
 const ll MOD = 998244353;
@@ -609,9 +609,18 @@ int main() {
         return dists[a] < dists[b];
     };
 
+    set<ll, decltype(comp)> st{comp};
+    vl used(N);
+    for(auto[p, id, b] : ps) {
+        if(!b and !used[id]) {
+            st.emplace(id);
+        }
+
+        used[id] = true;
+    }
+
     ll now = -1;
     set<ll> ans;
-    set<ll, decltype(comp)> st{comp};
     for (auto [p, id, b] : ps) {
         if (b) {
             st.emplace(id);
@@ -641,8 +650,13 @@ int main() {
         }
     }
 
+    vector<int> ans_conv;
     repa(a, ans) {
-        cout << a + 1 << " ";
+        // cout << a + 1 << " ";
+        ans_conv.push_back(a + 1);
     }
-    cout << endl;
+    for(int i = 0; i < ans_conv.size(); ++i){
+        cout << ans_conv[i] << " \n"[i + 1 == ans_conv.size()];
+    }
+    // cout << endl;
 }

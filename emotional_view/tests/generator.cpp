@@ -517,43 +517,70 @@ int main(int argc, char* argv[]){
     // 00 sample
     make_sample_testcase();
 
-    // 1* Easy
-    for(int t = 1; t <= 10; ++t){
-        make_easy_testcase(rnd.next(EASY_RND_MIN_N, EASY_RND_MAX_N), format("10_random_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_easy_testcase(EASY_MAX_N, format("11_max_%02d.in", t));
-    }
+    // // 1* Easy
+    // for(int t = 1; t <= 10; ++t){
+    //     make_easy_testcase(rnd.next(EASY_RND_MIN_N, EASY_RND_MAX_N), format("10_random_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 5; ++t){
+    //     make_easy_testcase(EASY_MAX_N, format("11_max_%02d.in", t));
+    // }
     
-    // 2* Normal
-    for(int t = 1; t <= 10; ++t){
-        make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("20_small_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
-        make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("21_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("22_max_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("23_tiny_%02d.in", t), 1);
-    }
+    // // 2* Normal
+    // for(int t = 1; t <= 10; ++t){
+    //     make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("20_small_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("21_large_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 5; ++t){
+    //     make_normal_testcase(NORMAL_MAX_N, format("22_max_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 5; ++t){
+    //     make_normal_testcase(NORMAL_MAX_N, format("23_tiny_%02d.in", t), 1);
+    // }
 
-    // 3* hard
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), format("30_small_%02d.in", t));
+    // // 3* hard
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), format("30_small_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(rnd.next(HARD_MEDIUM_MIN_N, HARD_MEDIUM_MAX_N), format("31_medium_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("32_large_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(MAX_N, format("33_max_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(MAX_N, format("34_tiny_%02d.in", t), 1);
+    // }
+    {
+        ofstream of("39_hand_01.in");
+        of << "4" << endl;
+        of << "1 2 1" << endl;
+        of << "50000 100000 50000" << endl;
+        of << "50000 -2 1" << endl;
+        of << "100000 -4 2" << endl;
+        of.close();
     }
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(HARD_MEDIUM_MIN_N, HARD_MEDIUM_MAX_N), format("31_medium_%02d.in", t));
+    {
+        ofstream of("39_hand_02.in");
+        of << "4" << endl;
+        of << "1 2 1" << endl;
+        of << "-50000 100000 50000" << endl;
+        of << "100000 1 1" << endl;
+        of << "2 -1 1" << endl;
+        of.close();
     }
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("32_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(MAX_N, format("33_max_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(MAX_N, format("34_tiny_%02d.in", t), 1);
+    {
+        ofstream of("39_hand_03.in");
+        of << "4" << endl;
+        of << "0 9985 6943" << endl;
+        of << "99912 42354 42354" << endl;
+        of << "0 -5 3" << endl;
+        of << "100000 -50000 50000" << endl;
+        of.close();
     }
 
 
