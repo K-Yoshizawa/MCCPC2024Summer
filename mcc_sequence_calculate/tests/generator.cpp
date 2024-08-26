@@ -28,25 +28,51 @@ int main(int argc, char* argv[]){
     make_sample_testcase();
 
     // 1* Easy
-    for(int t = 1; t <= 5; ++t){
-        make_testcase(rnd.next(EASY_SMALL_MIN_N, EASY_SMALL_MAX_N), format("10_small_%02d.in", t));
+    for(int t = 1; t <= 7; ++t){
+        make_testcase(rnd.next(EASY_LARGE_MIN_N, EASY_LARGE_MAX_N), format("11_random_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
-        make_testcase(rnd.next(EASY_LARGE_MIN_N, EASY_LARGE_MAX_N), format("11_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_testcase(EASY_MAX_N, format("12_max_%02d.in", t));
     }
+    {
+        ofstream of("13_min_01.in");
+        of << "3" << endl;
+        of << "1 2 2" << endl;
+        of.close();
+    }
+    {
+        ofstream of("13_min_02.in");
+        of << "3" << endl;
+        of << "2 1 2" << endl;
+        of.close();
+    }
+    {
+        ofstream of("13_min_03.in");
+        of << "3" << endl;
+        of << "2 2 1" << endl;
+        of.close();
+    }
+    {
+        ofstream of("13_min_04.in");
+        of << "3" << endl;
+        of << "1 1 1" << endl;
+        of.close();
+    }
 
-    // 2* Hard
-    for(int t = 1; t <= 5; ++t){
-        make_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), format("20_small_%02d.in", t));
+    // 2* Normal
+    for(int t = 1; t <= 7; ++t){
+        make_testcase(rnd.next(NORMAL_LARGE_MIN_N, NORMAL_LARGE_MAX_N), format("21_random_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
-        make_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("21_large_%02d.in", t));
+    for(int t = 1; t <= 3; ++t){
+        make_testcase(NORMAL_MAX_N, format("22_max_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
-        make_testcase(MAX_N, format("22_max_%02d.in", t));
+
+    // 3* Hard
+    for(int t = 1; t <= 7; ++t){
+        make_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("31_random_%02d.in", t));
+    }
+    for(int t = 1; t <= 3; ++t){
+        make_testcase(MAX_N, format("32_max_%02d.in", t));
     }
 
     return 0;

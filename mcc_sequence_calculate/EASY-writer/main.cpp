@@ -5,6 +5,7 @@ using ll = long long;
 
 int main(){
     int N; cin >> N;
+    assert(N <= 100);
     vector<int> A(N);
     for(auto &a : A) cin >> a;
 
