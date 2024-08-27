@@ -1,3 +1,5 @@
+// solution of Easy (author : writer)
+
 #include <bits/stdc++.h>
 using namespace std;
 

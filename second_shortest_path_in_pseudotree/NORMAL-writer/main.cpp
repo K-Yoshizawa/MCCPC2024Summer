@@ -1,3 +1,5 @@
+// solution of Normal (author : writer)
+
 #include <iostream>
 #include <cassert>
 #include <vector>

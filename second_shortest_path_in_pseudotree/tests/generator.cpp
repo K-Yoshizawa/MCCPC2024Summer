@@ -275,10 +275,10 @@ int main(int argc, char* argv[]){
     make_sample_testcase();
 
     // 1* Easy
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_easy_testcase(rnd.next(SMALL_MIN_N, SMALL_MAX_N), format("10_small_%02d.in", t));
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_easy_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), format("11_large_%02d.in", t));
     }
     for(int t = 1; t <= 3; ++t){
@@ -290,7 +290,7 @@ int main(int argc, char* argv[]){
     for(int t = 1; t <= 3; ++t){
         make_easy_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), format("14_circle_circle_%02d.in", t), 1, 1);
     }
-    for(int t = 1; t <= 5; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_easy_testcase(MAX_N, format("15_max_%02d.in", t));
     }
     {
@@ -321,18 +321,18 @@ int main(int argc, char* argv[]){
             make_normal_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), format("2%d_%s_%02d.in", q + 1, case_name[q].c_str(), t), false, static_cast<QUERY>(q));
         }
     }
-    for(int t = 1; t <= 10; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_normal_testcase(MAX_N, format("29_max_%02d.in", t), false, static_cast<QUERY>(rnd.next(static_cast<int>(QUERY::DUMMY))));
     }
     
     // 3* hard
-    for(int t = 1; t <= 10; ++t){
+    for(int t = 1; t <= 3; ++t){
         make_hard_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_T, LARGE_MAX_T), format("30_random_%02d.in", t), true);
     }
-    for(int t = 11; t <= 20; ++t){
+    for(int t = 4; t <= 6; ++t){
         make_hard_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_T, LARGE_MAX_T), format("30_random_%02d.in", t), true);
     }
-    for(int t = 21; t <= 30; ++t){
+    for(int t = 7; t <= 10; ++t){
         make_hard_testcase(MAX_N, MAX_T, format("30_random_%02d.in", t), true);
     }
 

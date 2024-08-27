@@ -1,6 +1,4 @@
-#pragma GCC target("avx2")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
+// solution of Hard (author : writer)
 
 #include <iostream>
 #include <vector>
@@ -103,14 +101,14 @@ int main(){
         // そうでなければ答えが存在する
         // 両方がサイクル上の頂点の場合
         if(belong[A] == 0 and belong[B] == 0){
-            cerr << "Each Vertex in Cycle" << endl;
+            // cerr << "Each Vertex in Cycle" << endl;
             int dist1 = abs(depth[A] - depth[B]);
             int dist2 = cycle_length - dist1;
             cout << max(dist1, dist2) << endl;
         }
         // 片方がサイクル上の頂点の場合
         else if(min(belong[A], belong[B]) == 0){
-            cerr << "Vertex in Cycle and in Branch" << endl;
+            // cerr << "Vertex in Cycle and in Branch" << endl;
             // 簡単のため A がサイクル上の頂点とする
             if(belong[B] == 0) swap(A, B);
             int C = reach_cycle[belong[B]];
@@ -120,7 +118,7 @@ int main(){
         }
         // 両方が異なる枝上の頂点の場合
         else{
-            cerr << "Each Vertex in Branch" << endl;
+            // cerr << "Each Vertex in Branch" << endl;
             int C = reach_cycle[belong[A]], D = reach_cycle[belong[B]];
             int dist1 = abs(depth[C] - depth[D]);
             int dist2 = cycle_length - dist1;
