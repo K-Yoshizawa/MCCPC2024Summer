@@ -549,39 +549,39 @@ int main(int argc, char* argv[]){
     // for(int t = 1; t <= 10; ++t){
     //     make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("32_large_%02d.in", t));
     // }
-    // for(int t = 1; t <= 10; ++t){
-    //     make_hard_testcase(MAX_N, format("33_max_%02d.in", t));
-    // }
+    for(int t = 1; t <= 50; ++t){
+        make_hard_testcase(MAX_N, format("33_max_%02d.in", t));
+    }
     // for(int t = 1; t <= 10; ++t){
     //     make_hard_testcase(MAX_N, format("34_tiny_%02d.in", t), 1);
     // }
-    {
-        ofstream of("39_hand_01.in");
-        of << "4" << endl;
-        of << "1 2 1" << endl;
-        of << "50000 100000 50000" << endl;
-        of << "50000 -2 1" << endl;
-        of << "100000 -4 2" << endl;
-        of.close();
-    }
-    {
-        ofstream of("39_hand_02.in");
-        of << "4" << endl;
-        of << "1 2 1" << endl;
-        of << "-50000 100000 50000" << endl;
-        of << "100000 1 1" << endl;
-        of << "2 -1 1" << endl;
-        of.close();
-    }
-    {
-        ofstream of("39_hand_03.in");
-        of << "4" << endl;
-        of << "0 9985 6943" << endl;
-        of << "99912 42354 42354" << endl;
-        of << "0 -5 3" << endl;
-        of << "100000 -50000 50000" << endl;
-        of.close();
-    }
+    // {
+    //     ofstream of("39_hand_01.in");
+    //     of << "4" << endl;
+    //     of << "1 2 1" << endl;
+    //     of << "50000 100000 50000" << endl;
+    //     of << "50000 -2 1" << endl;
+    //     of << "100000 -4 2" << endl;
+    //     of.close();
+    // }
+    // {
+    //     ofstream of("39_hand_02.in");
+    //     of << "4" << endl;
+    //     of << "1 2 1" << endl;
+    //     of << "-50000 100000 50000" << endl;
+    //     of << "100000 1 1" << endl;
+    //     of << "2 -1 1" << endl;
+    //     of.close();
+    // }
+    // {
+    //     ofstream of("39_hand_03.in");
+    //     of << "4" << endl;
+    //     of << "0 9985 6943" << endl;
+    //     of << "99912 42354 42354" << endl;
+    //     of << "0 -5 3" << endl;
+    //     of << "100000 -50000 50000" << endl;
+    //     of.close();
+    // }
 
 
     // make_easy_testcase(5, "90_random_01.in");

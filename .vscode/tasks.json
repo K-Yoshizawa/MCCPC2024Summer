@@ -4,12 +4,12 @@
         {
             "label": "compile",
             "type": "shell",
-            "command": "g++-12 ${file} -std=c++2a -O2 -fsanitize=address,undefined",
+            "command": "g++-12 ${file} -std=c++2a -O2",
         },
         {
             "label": "test",
             "type": "shell",
-            "command": "./a.out < ${file}",
+            "command": "./a.out < in.txt 2> debug.txt",
         },
     ]
 }

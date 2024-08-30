@@ -192,7 +192,7 @@ struct LazySegmentTree{
 using ll = long long;
 using ld = long double;
 
-const ll offset = 1000000000000000LL;
+const ll offset = 1000000000LL;
 
 int main(){
     int N; cin >> N;
@@ -230,35 +230,34 @@ int main(){
     // for(auto ar : argments){
     //     cout << ar << endl;
     // }
-    LazySegmentTree<int> seg(argments.size(), [&](int f, int g){return max(f, g);}, [&](int f, int g){return g;}, [&](int f, int g){return g == 0 ? f : g;}, 0, 0, true);
+    LazySegmentTree<int> seg(argments.size(), [&](int f, int g){return f || g;}, [&](int f, int g){return f || g;}, [&](int f, int g){return f || g;}, 0, 0, true);
     seg.build();
     vector<int> ans;
     for(auto [_, i] : d_square){
         auto [left_value, right_value] = argment_list[i];
         int left = find(left_value), right = find(right_value);
-        VARIABLE(i + 1);
+        // VARIABLE(i + 1);
         // VARIABLE(x[i]);
         // VARIABLE(y[i]);
         // VARIABLE(r[i]);
         // VARIABLE(left);
         // VARIABLE(right);
         if(left_value < 0 and right_value > 0 and x[i] < 0){
-            VARIABLE(max(seg.query(right, argments.size()), seg.query(0, left + 1)));
+            // VARIABLE(seg.query(right, argments.size()) || seg.query(0, left + 1));
             if(!(seg.query(right, argments.size()) || seg.query(0, left + 1))){
                 ans.push_back(i + 1);
             }
             seg.update(right + 1, argments.size(), 1);
-            seg.update(0, left, i + 1);
+            seg.update(0, left, 1);
         }
         else{
-            VARIABLE(seg.query(left, right + 1));
+            // VARIABLE(seg.query(left, right + 1));
             if(!seg.query(left, right + 1)) ans.push_back(i + 1);
-            seg.update(left + 1, right, i + 1);
+            seg.update(left + 1, right, 1);
         }
     }
     sort(ans.begin(), ans.end());
     for(int i = 0; i < ans.size(); ++i){
         cout << ans[i] << " \n"[i + 1 == ans.size()];
-        // cerr << (int)x[ans[i] - 1] << " " << (int)y[ans[i] - 1] << " " << (int)r[ans[i] - 1] << " : " << ans[i] << endl;
     }
 }

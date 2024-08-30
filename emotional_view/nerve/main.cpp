@@ -650,13 +650,13 @@ int main() {
         }
     }
 
-    vector<int> ans_conv;
+    vector<int> answer;
     repa(a, ans) {
         // cout << a + 1 << " ";
-        ans_conv.push_back(a + 1);
+        answer.push_back(a + 1);
     }
-    for(int i = 0; i < ans_conv.size(); ++i){
-        cout << ans_conv[i] << " \n"[i + 1 == ans_conv.size()];
+    for(int i = 0; i < answer.size(); ++i){
+        cout << answer[i] << " \n"[i + 1 == answer.size()];
     }
     // cout << endl;
 }
