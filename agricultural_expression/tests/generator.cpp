@@ -62,7 +62,7 @@ string expr(int remain, int only = 0, int connect = 50){
 string term(int remain, int is_number = 1, int is_grow = 2, int is_heavest = 2){
     string ret;
     if(remain < 4) is_grow = is_heavest = 0;
-    if(remain > 100000) is_number = 0;
+    if(remain > 1000) is_number = 0;
     int p = rnd.next(1, is_number + is_grow + is_heavest);
     if(p <= is_number){
         ret += number(remain);
@@ -196,14 +196,35 @@ int main(int argc, char* argv[]){
     make_dataset6(10);
     make_dataset7(10);
 
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(100000, 200000), format("80_random_%02d.in", t));
+    for(int t = 1; t <= 5; ++t){
+        make_hard_testcase(rnd.next(400000, 450000), format("80_random_%02d.in", t));
     }
-    for(int t = 11; t <= 20; ++t){
-        make_hard_testcase(rnd.next(300000, 400000), format("80_random_%02d.in", t));
-    }
-    for(int t = 21; t <= 30; ++t){
+    for(int t = 6; t <= 10; ++t){
         make_hard_testcase(500000, format("80_random_%02d.in", t));
+    }
+    {
+        ofstream of(format("81_hand_01.in").c_str());
+        for(int i = 0; i < 166333; ++i) of << "G(";
+        for(int i = 0; i < 1000; ++i) of << "0";
+        for(int i = 0; i < 166333; ++i) of << ")";
+        of << endl;
+        of.close();
+    }
+    {
+        ofstream of(format("81_hand_02.in").c_str());
+        for(int i = 0; i < 166333; ++i) of << "H(";
+        for(int i = 0; i < 1000; ++i) of << rnd.next(0, 9);
+        for(int i = 0; i < 166333; ++i) of << ")";
+        of << endl;
+        of.close();
+    }
+    {
+        ofstream of(format("81_hand_03.in").c_str());
+        for(int i = 0; i < 166333; ++i) of << rnd.next("[GH]") << "(";
+        for(int i = 0; i < 1000; ++i) of << rnd.next(0, 9);
+        for(int i = 0; i < 166333; ++i) of << ")";
+        of << endl;
+        of.close();
     }
 
     return 0;

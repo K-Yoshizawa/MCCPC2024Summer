@@ -68,11 +68,13 @@ struct Parser{
 
     bool number(){
         bool ret = false;
+        int cnt = 0;
         while(isdigit(*itr)){
             ret = true;
             ++itr;
+            ++cnt;
         }
-        return ret;
+        return ret and cnt <= 1000;
     }
 };
 
