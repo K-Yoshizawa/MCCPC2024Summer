@@ -44,6 +44,30 @@ void make_sample_testcase(){
         of << "8 9" << endl;
         of.close();
     }
+    {
+        ofstream of("00_sample_04.in");
+        of << "15" << endl;
+        of << "8 13" << endl;
+        of << "11 14" << endl;
+        of << "8 11" << endl;
+        of << "3 12" << endl;
+        of << "6 8" << endl;
+        of << "2 15" << endl;
+        of << "3 9" << endl;
+        of << "5 15" << endl;
+        of << "2 9" << endl;
+        of << "2 11" << endl;
+        of << "7 15" << endl;
+        of << "5 10" << endl;
+        of << "1 5" << endl;
+        of << "4 11" << endl;
+        of << "7 11" << endl;
+        of << "3" << endl;
+        of << "1 2" << endl;
+        of << "10 13" << endl;
+        of << "2 7" << endl;
+        of.close();
+    }
 }
 
 void make_easy_testcase(int N, string case_name, int is_circle = -1, int B_on_circle = -1){
@@ -86,6 +110,11 @@ struct UnionFind {
         if(data[k] < 0) return (k);
         return (data[k] = find(data[k]));
     }
+
+    int size(int k){
+        k = find(k);
+        return -data[k];
+    }
 };
 
 pair<vector<pair<int, int>>, vector<vector<int>>> make_pseudotree(int N, bool is_cycle = false){
@@ -126,6 +155,28 @@ pair<vector<pair<int, int>>, vector<vector<int>>> make_pseudotree(int N, bool is
         }
     }
     return {ret_first, ret_second};
+}
+
+vector<pair<int, int>> make_random_pseudo(int N){
+    UnionFind uf(N + 1);
+    set<pair<int, int>> st;
+    vector<pair<int, int>> ret;
+    while(uf.size(1) != N){
+        int A = rnd.next(1, N), B = rnd.next(1, N);
+        if(A > B) swap(A, B);
+        if(uf.unite(A, B)){
+            ret.push_back({A, B});
+            st.insert({A, B});
+        }
+    }
+    do{
+        int A = rnd.next(1, N - 1), B = rnd.next(A + 1, N);
+        if(st.count({A, B}) == 0){
+            ret.push_back({A, B});
+            break;
+        }
+    }while(1);
+    return ret;
 }
 
 enum class QUERY{
@@ -268,6 +319,22 @@ void make_hard_testcase(int N, int T, string case_name, bool is_cycle = false){
     of.close();
 }
 
+void make_random_testcase(int N, int T, string case_name){
+    auto G = make_random_pseudo(N);
+
+    ofstream of(case_name.c_str());
+    of << N << endl;
+    for(auto [u, v] : G){
+        of << u << " " << v << endl;
+    }
+    of << T << endl;
+    for(int t = 0; t < T; ++t){
+        int A = rnd.next(1, N - 1), B = rnd.next(A + 1, N);
+        of << A << " " << B << endl;
+    }
+    of.close();
+}
+
 int main(int argc, char* argv[]){
     registerGen(argc, argv, 1);
 
@@ -321,22 +388,25 @@ int main(int argc, char* argv[]){
             make_normal_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), format("2%d_%s_%02d.in", q + 1, case_name[q].c_str(), t), false, static_cast<QUERY>(q));
         }
     }
-    for(int t = 1; t <= 3; ++t){
-        make_normal_testcase(MAX_N, format("29_max_%02d.in", t), false, static_cast<QUERY>(rnd.next(static_cast<int>(QUERY::DUMMY))));
+    // for(int t = 1; t <= 3; ++t){
+    //     make_normal_testcase(MAX_N, format("29_max_%02d.in", t), false, static_cast<QUERY>(rnd.next(static_cast<int>(QUERY::DUMMY))));
+    // }
+    for(int t = 1; t <= 5; ++t){
+        make_random_testcase(MAX_N, 1, format("29_max_%02d.in", t));
     }
     
     // 3* hard
     for(int t = 1; t <= 3; ++t){
-        make_hard_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_T, LARGE_MAX_T), format("30_random_%02d.in", t), true);
+        make_random_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_T, LARGE_MAX_T), format("30_random_%02d.in", t));
     }
     for(int t = 4; t <= 6; ++t){
-        make_hard_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_T, LARGE_MAX_T), format("30_random_%02d.in", t), true);
+        make_random_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_T, LARGE_MAX_T), format("30_random_%02d.in", t));
     }
     for(int t = 7; t <= 10; ++t){
-        make_hard_testcase(MAX_N, MAX_T, format("30_random_%02d.in", t), true);
+        make_random_testcase(MAX_N, MAX_T, format("30_random_%02d.in", t));
     }
 
-    // make_normal_testcase(10, "test.in", false, QUERY::CYCLE_BRANCH);
+    // make_random_testcase(15, 1, "test.in");
 
     return 0;
 }

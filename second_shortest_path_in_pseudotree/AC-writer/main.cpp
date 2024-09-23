@@ -56,22 +56,24 @@ int main(){
         }
     }
     {
-        auto dfs = [&](auto self, int current, int previous, int current_branch) -> void {
+        auto dfs = [&](auto self, int current, int previous, int current_branch, int current_depth) -> void {
             belong[current] = current_branch;
+            depth[current] = current_depth;
             for(auto adjacent : G[current]){
                 if(adjacent == previous) continue;
-                if(belong[adjacent] == 0){
-                    reach_cycle[current_branch] = adjacent;
-                    depth[current] = 1;
-                    return;
-                }
-                self(self, adjacent, current, current_branch);
-                depth[current] = depth[adjacent] + 1;
+                self(self, adjacent, current, current_branch, current_depth + 1);
             }
             return;
         };
-        for(int i = 0; i < leaf_vertex.size(); ++i){
-            dfs(dfs, leaf_vertex[i], -1, i + 1);
+        for(int v = 1, branch = 1; v <= N; ++v){
+            if(belong[v] == 0){
+                for(auto adjacent : G[v]){
+                    if(belong[adjacent] == 0) continue;
+                    reach_cycle[branch] = v;
+                    dfs(dfs, adjacent, v, branch, 1);
+                    ++branch;
+                }
+            }
         }
     }
 
