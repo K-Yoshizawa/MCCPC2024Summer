@@ -12,27 +12,28 @@ for i in range(N):
 from math import log2, ceil
 
 LOG = min(ceil(log2(M)) + 1, 41)
-dat = [[-1 for _ in range(LOG)] for _ in range(N)]
-who = [[-1 for _ in range(LOG)] for _ in range(N)]
+dat = [[0 for _ in range(N)] for _ in range(LOG)]
+who = [[0 for _ in range(N)] for _ in range(LOG)]
 
 for i in range(N):
-    dat[i][0] = P[i]
-    who[i][0] = Q[i]
-for j in range(1, LOG):
-    for i in range(N):
-        dat[i][j] = dat[who[i][j - 1]][j - 1] + dat[i][j - 1]
-        who[i][j] = who[who[i][j - 1]][j - 1]
+    dat[0][i] = P[i]
+    who[0][i] = Q[i]
+for i in range(1, LOG):
+    for j in range(N):
+        dat[i][j] = dat[i - 1][who[i - 1][j]] + dat[i - 1][j]
+        who[i][j] = who[i - 1][who[i - 1][j]]
 
 ans = set()
 for i in range(N):
     step = 0
     ret = i
     for k in range(LOG - 1, -1, -1):
-        if step + dat[ret][k] < M:
-            step += dat[ret][k]
-            ret = who[ret][k]
+        if step + dat[k][ret] < M:
+            step += dat[k][ret]
+            ret = who[k][ret]
     ans.add(ret)
 
-ans = sorted(list(ans))
+ans = list(ans)
+ans.sort()
 for i in range(len(ans)):
     print(ans[i] + 1, end=('\n' if i + 1 == len(ans) else ' '))

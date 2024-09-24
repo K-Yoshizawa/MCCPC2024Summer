@@ -1,7 +1,7 @@
 using ll = long long;
 
 const int MIN_N = 2;
-const int MAX_N = 200000;
+const int MAX_N = 100000;
 const ll MIN_M = 1;
 const ll MAX_M = 1000000000000LL;
 const ll MIN_P = 1;
@@ -32,8 +32,8 @@ const ll NORMAL_MAX_M = 1000000000LL;
 
 const int HARD_SMALL_MIN_N = 30000;
 const int HARD_SMALL_MAX_N = 50000;
-const int HARD_LARGE_MIN_N = 150000;
-const int HARD_LARGE_MAX_N = 180000;
+const int HARD_LARGE_MIN_N = 80000;
+const int HARD_LARGE_MAX_N = 90000;
 const ll HARD_SMALL_MIN_M = 1000000000LL;
 const ll HARD_SMALL_MAX_M = 2000000000LL;
 const ll HARD_LARGE_MIN_M = 100000000000LL;
