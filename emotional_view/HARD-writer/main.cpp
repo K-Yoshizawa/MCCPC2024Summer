@@ -237,11 +237,11 @@ int main(){
         auto [left_value, right_value] = argment_list[i];
         int left = find(left_value), right = find(right_value);
         VARIABLE(i + 1);
-        // VARIABLE(x[i]);
-        // VARIABLE(y[i]);
-        // VARIABLE(r[i]);
-        // VARIABLE(left);
-        // VARIABLE(right);
+        VARIABLE(x[i]);
+        VARIABLE(y[i]);
+        VARIABLE(r[i]);
+        VARIABLE(left);
+        VARIABLE(right);
         if(left_value < 0 and right_value > 0 and x[i] < 0){
             VARIABLE(max(seg.query(right, argments.size()), seg.query(0, left + 1)));
             if(!(seg.query(right, argments.size()) || seg.query(0, left + 1))){
@@ -259,6 +259,6 @@ int main(){
     sort(ans.begin(), ans.end());
     for(int i = 0; i < ans.size(); ++i){
         cout << ans[i] << " \n"[i + 1 == ans.size()];
-        // cerr << (int)x[ans[i] - 1] << " " << (int)y[ans[i] - 1] << " " << (int)r[ans[i] - 1] << " : " << ans[i] << endl;
+        cerr << (int)x[ans[i] - 1] << " " << (int)y[ans[i] - 1] << " " << (int)r[ans[i] - 1] << " : " << ans[i] << endl;
     }
 }
