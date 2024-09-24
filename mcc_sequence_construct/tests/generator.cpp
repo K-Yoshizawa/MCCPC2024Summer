@@ -27,9 +27,9 @@ int main(int argc, char* argv[]){
     }
 
     // 2* hard
-    for(int t = HARD_SMALL_MIN_M; t <= HARD_SMALL_MAX_M; ++t){
-        ofstream of(format("20_small_%02d.in", t - HARD_SMALL_MIN_M + 1));
-        of << t << endl;
+    for(int t = 1; t <= 20; ++t){
+        ofstream of(format("20_small_%02d.in", t));
+        of << rnd.next(HARD_SMALL_MIN_M, HARD_SMALL_MAX_M) << endl;
         of.close();
     }
     for(int t = 1; t <= 20; ++t){
@@ -45,6 +45,16 @@ int main(int argc, char* argv[]){
     {
         ofstream of(format("23_max_01.in"));
         of << MAX_M << endl;
+        of.close();
+    }
+    for(int t = 0; t <= 10; ++t){
+        ofstream of(format("24_hand_%02d.in", t));
+        of << t << endl;
+        of.close();
+    }
+    {
+        ofstream of(format("29_hand_01.in"));
+        of << 99996832726205LL << endl;
         of.close();
     }
 
