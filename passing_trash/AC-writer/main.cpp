@@ -9,7 +9,7 @@ int main(){
     for(int i = 1; i <= N; ++i) cin >> P[i];
     for(int i = 1; i <= N; ++i) cin >> Q[i];
 
-    int LOG = ceil(log2(M)) + 1;
+    int LOG = min(int(ceil(log2(M))) + 1, 41);
     vector dat(N + 1, vector(LOG, 0LL));
     vector who(N + 1, vector(LOG, 0));
     for(int i = 1; i <= N; ++i){
@@ -41,7 +41,7 @@ int main(){
     }
     sort(ans.begin(), ans.end());
     ans.erase(unique(ans.begin(), ans.end()), ans.end());
-    cout << ans.size() << endl;
+    // cout << ans.size() << endl;
     for(int i = 0; i < ans.size(); ++i){
         cout << ans[i] << " \n"[i == ans.size() - 1];
     }

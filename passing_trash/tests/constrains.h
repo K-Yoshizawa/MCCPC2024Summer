@@ -5,7 +5,7 @@ const int MAX_N = 200000;
 const ll MIN_M = 1;
 const ll MAX_M = 1000000000000LL;
 const ll MIN_P = 1;
-const ll MAX_P = 1000;
+const ll MAX_P = 100000;
 const int MIN_Q = 1;
 
 const int EASY_SMALL_MIN_N = 10;

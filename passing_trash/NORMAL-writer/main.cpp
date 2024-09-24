@@ -5,6 +5,8 @@ using ll = long long;
 
 int main(){
     ll N, M; cin >> N >> M;
+    assert(N <= 1000);
+    assert(M <= 1000000000);
     vector<ll> P(N + 1), Q(N + 1);
     for(int i = 1; i <= N; ++i) cin >> P[i];
     for(int i = 1; i <= N; ++i) cin >> Q[i];
@@ -56,7 +58,7 @@ int main(){
     }
     sort(ans.begin(), ans.end());
     ans.erase(unique(ans.begin(), ans.end()), ans.end());
-    cout << ans.size() << endl;
+    // cout << ans.size() << endl;
     for(int i = 0; i < ans.size(); ++i){
         cout << ans[i] << " \n"[i == ans.size() - 1];
     }
