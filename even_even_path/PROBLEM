@@ -3,7 +3,7 @@
 pid='M'
 
 problem(
-  time_limit=2.0,
+  time_limit=5.0,
   id=pid,
   title=pid + ": Even Even Path",
   #wiki_name="Your pukiwiki page name", # for wikify plugin
