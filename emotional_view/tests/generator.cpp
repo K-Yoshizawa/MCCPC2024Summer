@@ -511,59 +511,123 @@ void make_hard_testcase(int N, string case_name, int LIM_r = 2 * MAX_XY){
     of.close();
 }
 
+void make_maximum_testcase(int N, string case_name, int LIM_r = 2 * MAX_XY){
+    vector<int> x(N), y(N), r(N, 0);
+    vector<double> delaunay_x, delaunay_y;
+    set<pair<int, int>> point_set;
+    int dx[] = {1, 1, 0, -1, -1, -1, 0, 1};
+    int dy[] = {0, -1, -1, -1, 0, 1, 1, 1};
+    auto check = [&](int tmp_x, int tmp_y) -> bool {
+        if(abs(tmp_x) + abs(tmp_y) <= 1) return false;
+        if(point_set.count({tmp_x, tmp_y})) return false;
+        for(int delta = 0; delta < 8; ++delta){
+            int cur_x = tmp_x + dx[delta];
+            int cur_y = tmp_y + dy[delta];
+            if(point_set.count({cur_x, cur_y})) return false;
+        }
+        return true;
+    };
+    for(int i = 0; i < N; ++i){
+        int cand_x = rnd.next(MIN_XY, MAX_XY);
+        int cand_y = rnd.next(MIN_XY, MAX_XY);
+        while(1){
+            if(check(cand_x, cand_y)) break;
+            cand_x = rnd.next(MIN_XY, MAX_XY);
+            cand_y = rnd.next(MIN_XY, MAX_XY);
+        }
+        x[i] = cand_x, y[i] = cand_y;
+        point_set.emplace(cand_x, cand_y);
+        delaunay_x.push_back(static_cast<double>(cand_x));
+        delaunay_y.push_back(static_cast<double>(cand_y));
+    }
+    delaunay::DelaunayTriangulation DT(delaunay_x, delaunay_y);
+    DT.execute();
+    vector<delaunay::Edge> result_edge = DT.get_edges();
+    auto dist = [&](int i, int j) -> int {
+        double dx = delaunay_x[i] - delaunay_x[j];
+        double dy = delaunay_y[i] - delaunay_y[j];
+        return (int)sqrt(dx * dx + dy * dy);
+    };
+    vector<vector<pair<int, int>>> G(N);
+    for(auto [i, j] : result_edge){
+        G[i].emplace_back(j, dist(i, j));
+        G[j].emplace_back(i, dist(i, j));
+    }
+    vector<int> order(N);
+    iota(order.begin(), order.end(), 0);
+    shuffle(order.begin(), order.end());
+    for(auto i : order){
+        int MAX_R = min(LIM_r, (int)sqrt(delaunay_x[i] * delaunay_x[i] + delaunay_y[i] * delaunay_y[i]));
+        for(auto [j, d] : G[i]){
+            MAX_R = min(MAX_R, min(d - r[j], d - 1));
+        }
+        // r[i] = rnd.next(1, MAX_R);
+        r[i] = MAX_R;
+    }
+    ofstream of(case_name.c_str());
+    of << N << endl;
+    for(int i = 0; i < N; ++i){
+        of << x[i] << " " << y[i] << " " << r[i] << endl;
+    }
+    of.close();
+}
+
 int main(int argc, char* argv[]){
     registerGen(argc, argv, 1);
 
-    // 00 sample
-    make_sample_testcase();
+    // // 00 sample
+    // make_sample_testcase();
 
-    // 1* Easy
-    for(int t = 1; t <= 10; ++t){
-        make_easy_testcase(rnd.next(EASY_RND_MIN_N, EASY_RND_MAX_N), format("10_random_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_easy_testcase(EASY_MAX_N, format("11_max_%02d.in", t));
-    }
+    // // 1* Easy
+    // for(int t = 1; t <= 10; ++t){
+    //     make_easy_testcase(rnd.next(EASY_RND_MIN_N, EASY_RND_MAX_N), format("10_random_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 5; ++t){
+    //     make_easy_testcase(EASY_MAX_N, format("11_max_%02d.in", t));
+    // }
     
-    // 2* Normal
-    for(int t = 1; t <= 10; ++t){
-        make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("20_small_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
-        make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("21_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("22_max_%02d.in", t));
-    }
-    for(int t = 1; t <= 5; ++t){
-        make_normal_testcase(NORMAL_MAX_N, format("23_tiny_%02d.in", t), 1);
-    }
+    // // 2* Normal
+    // for(int t = 1; t <= 10; ++t){
+    //     make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("20_small_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_normal_testcase(rnd.next(NORMAL_SMALL_MIN_N, NORMAL_SMALL_MAX_N), format("21_large_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 5; ++t){
+    //     make_normal_testcase(NORMAL_MAX_N, format("22_max_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 5; ++t){
+    //     make_normal_testcase(NORMAL_MAX_N, format("23_tiny_%02d.in", t), 1);
+    // }
 
     // 3* hard
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), format("30_small_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(HARD_MEDIUM_MIN_N, HARD_MEDIUM_MAX_N), format("31_medium_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
-        make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("32_large_%02d.in", t));
-    }
-    for(int t = 1; t <= 10; ++t){
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(rnd.next(HARD_SMALL_MIN_N, HARD_SMALL_MAX_N), format("30_small_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(rnd.next(HARD_MEDIUM_MIN_N, HARD_MEDIUM_MAX_N), format("31_medium_%02d.in", t));
+    // }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_hard_testcase(rnd.next(HARD_LARGE_MIN_N, HARD_LARGE_MAX_N), format("32_large_%02d.in", t));
+    // }
+    for(int t = 1; t <= 50; ++t){
         make_hard_testcase(MAX_N, format("33_max_%02d.in", t));
     }
-    for(int t = 1; t <= 10; ++t){
+    for(int t = 1; t <= 50; ++t){
+        make_maximum_testcase(MAX_N, format("35_maximum_%02d.in", t));
+    }
+    for(int t = 1; t <= 50; ++t){
         make_hard_testcase(MAX_N, format("34_tiny_%02d.in", t), 1);
     }
-    {
-        ofstream of("39_hand_01.in");
-        of << "4" << endl;
-        of << "1 2 1" << endl;
-        of << "50000 100000 50000" << endl;
-        of << "50000 -2 1" << endl;
-        of << "100000 -4 2" << endl;
-        of.close();
-    }
+    // {
+    //     ofstream of("39_hand_01.in");
+    //     of << "4" << endl;
+    //     of << "1 2 1" << endl;
+    //     of << "50000 100000 50000" << endl;
+    //     of << "50000 -2 1" << endl;
+    //     of << "100000 -4 2" << endl;
+    //     of.close();
+    // }
     // {
     //     ofstream of("39_hand_02.in");
     //     of << "4" << endl;

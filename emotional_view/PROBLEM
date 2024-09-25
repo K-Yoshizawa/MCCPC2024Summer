@@ -3,7 +3,7 @@
 pid='L'
 
 problem(
-  time_limit=2.0,
+  time_limit=120.0,
   id=pid,
   title=pid + ": Emotional View",
   #wiki_name="Your pukiwiki page name", # for wikify plugin

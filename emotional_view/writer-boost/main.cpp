@@ -1,18 +1,14 @@
 #include <bits/stdc++.h>
+#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/cpp_dec_float.hpp>
 using namespace std;
+namespace mp = boost::multiprecision;
+using Bint = mp::cpp_int;
+using Real = mp::cpp_dec_float_100;
+using T = tuple<Bint, Bint, Bint>;
+using ll = long long;
 
 #define VARIABLE(x) cerr << "# " << #x << " = " << (x) << endl;
-
-/**
- * @file LazySegmentTree.hpp
- * @author log K (lX57)
- * @brief Lazy Segment Tree - 遅延評価セグメント木
- * @version 2.0
- * @date 2023-10-02
- */
-
-#include <bits/stdc++.h>
-using namespace std;
 
 template<typename Monoid, typename OperatorMonoid = Monoid>
 struct LazySegmentTree{
@@ -189,71 +185,64 @@ struct LazySegmentTree{
     }
 };
 
-using ll = long long;
-using ld = long double;
+Real offset = mp::pow(Real(10), 90);
 
-const ll offset = 1000000000000000LL;
+struct Spot{
+    Real x, y, r, d;
+    Spot(Real x_ = 0.0, Real y_ = 0.0, Real r_ = 0.0) : x(x_), y(y_), r(r_){
+        d = mp::sqrt(x * x + y * y - r * r);
+    }
+    T arg(){
+        Bint arg1 = static_cast<Bint>(mp::floor(mp::atan2(d * y + r * x, d * x - r * y) * offset));
+        Bint arg2 = static_cast<Bint>(mp::floor(mp::atan2(d * y - r * x, d * x + r * y) * offset));
+        Bint arg3 = static_cast<Bint>(mp::floor(mp::atan2(y, x) * offset));
+        return {min(arg1, arg2), arg3, max(arg1, arg2)};
+    }
+};
 
 int main(){
     int N; cin >> N;
-    vector<ld> x(N), y(N), r(N);
-    for(int i = 0; i < N; ++i) cin >> x[i] >> y[i] >> r[i];
-
-    vector<pair<ld, int>> d_square(N);
-    vector<ld> d(N), L_square(N);
+    vector<Spot> emo_spot;
+    vector<pair<ll, int>> d_square;
+    vector<Bint> argments;
     for(int i = 0; i < N; ++i){
-        d_square[i] = {x[i] * x[i] + y[i] * y[i] - r[i] * r[i], i};
-        d[i] = sqrt(x[i] * x[i] + y[i] * y[i] - r[i] * r[i]);
-        L_square[i] = x[i] * x[i] + y[i] * y[i];
-    }
-    using P = pair<ld, ld>;
-    vector<pair<ll, ll>> argment_list(N);
-    vector<ll> argments;
-    for(int i = 0; i < N; ++i){
-        ld coef = d[i] / L_square[i];
-        P p1, p2;
-        p1 = {coef * (d[i] * x[i] - r[i] * y[i]), coef * (d[i] * y[i] + r[i] * x[i])};
-        p2 = {coef * (d[i] * x[i] + r[i] * y[i]), coef * (d[i] * y[i] - r[i] * x[i])};
-        ld arg1 = atan2l(p1.second, p1.first), arg2 = atan2l(p2.second, p2.first), arg3 = atan2l(y[i], x[i]);
-        ll arg_conv_1 = arg1 * offset, arg_conv_2 = arg2 * offset, arg_conv_3 = arg3 * offset;
-        argment_list[i] = {min(arg_conv_1, arg_conv_2), max(arg_conv_1, arg_conv_2)};
-        argments.push_back(arg_conv_1), argments.push_back(arg_conv_2), argments.push_back(arg_conv_3);
+        ll x, y, r; cin >> x >> y >> r;
+        emo_spot.push_back(Spot(x, y, r));
+        d_square.push_back({x * x + y * y - r * r, i});
+        auto [a1, a2, a3] = emo_spot.back().arg();
+        argments.push_back(a1);
+        argments.push_back(a2);
+        argments.push_back(a3);
     }
     sort(d_square.begin(), d_square.end());
-    argments.push_back(acosl(-1) * offset);
-    argments.push_back(acosl(-1) * offset * -1);
+    argments.push_back(static_cast<Bint>(mp::floor(mp::acos(Real(-1)) * offset)));
+    argments.push_back(static_cast<Bint>(mp::floor(mp::acos(Real(-1)) * -1 * offset)));
     sort(argments.begin(), argments.end());
     argments.erase(unique(argments.begin(), argments.end()), argments.end());
-    auto find = [&](ll value) -> int {
+    auto find = [&](Bint value) -> int {
         return lower_bound(argments.begin(), argments.end(), value) - argments.begin();
     };
-    // for(auto ar : argments){
-    //     cout << ar << endl;
+
+    // for(Real ar : argments){
+    //     cerr << "# " << static_cast<Bint>(ar) << endl;
     // }
+
     LazySegmentTree<int> seg(argments.size(), [&](int f, int g){return max(f, g);}, [&](int f, int g){return g;}, [&](int f, int g){return g == 0 ? f : g;}, 0, 0, true);
     seg.build();
     vector<int> ans;
     for(auto [_, i] : d_square){
-        auto [left_value, right_value] = argment_list[i];
-        int left = find(left_value), right = find(right_value);
-        // VARIABLE(i + 1);
-        // VARIABLE(x[i]);
-        // VARIABLE(y[i]);
-        // VARIABLE(r[i]);
-        // VARIABLE(left);
-        // VARIABLE(right);
-        if(left_value < 0 and right_value > 0 and x[i] < 0){
-            // VARIABLE(max(seg.query(right, argments.size()), seg.query(0, left + 1)));
-            if(!(seg.query(right, argments.size()) || seg.query(0, left + 1))){
+        auto [left_arg, __, right_arg] = emo_spot[i].arg();
+        int l = find(left_arg), r = find(right_arg);
+        if(left_arg < 0 and right_arg > 0 and emo_spot[i].x < 0){
+            if(!(seg.query(r, argments.size()) || seg.query(0, l + 1))){
                 ans.push_back(i + 1);
             }
-            seg.update(right + 1, argments.size(), 1);
-            seg.update(0, left, i + 1);
+            seg.update(r + 1, argments.size(), 1);
+            seg.update(0, l, i + 1);
         }
         else{
-            // VARIABLE(seg.query(left, right + 1));
-            if(!seg.query(left, right + 1)) ans.push_back(i + 1);
-            seg.update(left + 1, right, i + 1);
+            if(!seg.query(l, r + 1)) ans.push_back(i + 1);
+            seg.update(l + 1, r, i + 1);
         }
     }
     sort(ans.begin(), ans.end());
