@@ -13,8 +13,8 @@ const int EASY_MAX_N = 50;
 // const int NORMAL_RND_MAX_N = 800;
 // const int NORMAL_MAX_N = 1000;
 
-// const int HARD_SMALL_MIN_N = 30000;
-// const int HARD_SMALL_MAX_N = 50000;
+const int HARD_SMALL_MIN_N = 30000;
+const int HARD_SMALL_MAX_N = 50000;
 const int LARGE_MIN_N = 7000;
 const int LARGE_MAX_N = 9000;
 const int LARGE_MIN_M = 700;
