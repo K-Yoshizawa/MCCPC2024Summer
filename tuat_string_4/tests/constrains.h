@@ -1,9 +1,9 @@
 using ll = long long;
 
 const int MIN_N = 4;
-const int MAX_N = 10000;
+const int MAX_N = 200000;
 const int MIN_M = 3;
-const int MAX_M = 1000;
+const int MAX_M = 300;
 
 const int EASY_RND_MIN_N = 30;
 const int EASY_RND_MAX_N = 40;

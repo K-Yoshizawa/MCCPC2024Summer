@@ -70,9 +70,9 @@ int main(int argc, char* argv[]){
         make_testcase(MAX_N, 26, format("22_max_%02d.in", t));
     }
 
-    for(int t = 1; t <= 10; ++t){
-        make_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_M, LARGE_MAX_M), format("31_random_%02d.in", t));
-    }
+    // for(int t = 1; t <= 10; ++t){
+    //     make_testcase(rnd.next(LARGE_MIN_N, LARGE_MAX_N), rnd.next(LARGE_MIN_M, LARGE_MAX_M), format("31_random_%02d.in", t));
+    // }
     for(int t = 1; t <= 5; ++t){
         make_testcase(MAX_N, MIN_M, format("32_max_dense_%02d.in", t));
     }
