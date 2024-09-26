@@ -1,6 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/pypy3
 
-# Python Solution (writer)
+# Python Solution (Hard)
 
 N = int(input())
 A = list(map(int, input().split(' ')))

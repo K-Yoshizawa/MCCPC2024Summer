@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+// C++ Solution (Easy)
+
+#include <iostream>
+#include <vector>
+#include <cassert>
 using namespace std;
 
 using ll = long long;
@@ -13,7 +17,10 @@ int main(){
     for(int i = 0; i < N; ++i){
         for(int j = i + 1; j < N; ++j){
             for(int k = j + 1; k < N; ++k){
-                if(A[i] != A[j] and A[j] == A[k]) ++ans;
+                if(A[i] == A[j]) continue;
+                if(A[i] == A[k]) continue;
+                if(A[j] != A[k]) continue;
+                ++ans;
             }
         }
     }

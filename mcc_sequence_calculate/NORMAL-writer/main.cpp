@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+// C++ Solution (Normal)
+
+#include <iostream>
+#include <vector>
+#include <cassert>
 using namespace std;
 
 using ll = long long;
@@ -9,26 +13,16 @@ int main(){
     vector<int> A(N);
     for(auto &a : A) cin >> a;
 
-    vector left_cum(N + 1, vector<int>(N, 0));
-    vector right_cum(N + 1, vector<int>(N, 0));
-    for(int i = 0; i < N; ++i){
-        ++left_cum[A[i]][i];
-        ++right_cum[A[i]][i];
-    }
-    for(int i = 1; i <= N; ++i){
-        for(int j = 1; j < N; ++j){
-            left_cum[i][j] += left_cum[i][j - 1];
-        }
-        for(int j = N - 2; j >= 0; --j){
-            right_cum[i][j] += right_cum[i][j + 1];
-        }
-    }
-
     int ans = 0;
-    for(int i = 0; i < N; ++i){
-        for(int j = 1; j <= N; ++j){
-            if(j == A[i]) continue;
-            ans += left_cum[j][i] * (right_cum[A[i]][i] - 1);
+    vector C(N + 1, vector(N + 1, 0));
+    for(int k = 0; k < N; ++k){
+        int Aj = A[k];
+        for(int Ai = 1; Ai <= N; ++Ai){
+            if(Ai == Aj) continue;
+            ans += C[Ai][Aj];
+        }
+        for(int j = k, i = 0; i < j; ++i){
+            ++C[A[i]][Aj];
         }
     }
 
